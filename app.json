@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "RNCourse",
-    "slug": "RNCourse",
+    "name": "ToDoList",
+    "slug": "ToDoList",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/toDoListLogo.gif",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/noteBook.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
@@ -19,12 +19,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/toDoListLogo.gif",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/toDoListLogo.gif"
     }
   }
 }
