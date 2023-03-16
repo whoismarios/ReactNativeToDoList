@@ -33,7 +33,7 @@ npm start
 
 ### The Project covers a couple of Basics:
 
-- States (useState and useEffect)
+- State Hooks (useState and useEffect)
 - AsyncStorage (Localstorage to safe user data)
 - React Native Core Components (Modal, TextInput, ImageBackground, FlatList, Alert, Pressable ...)
 - Custom Components with props
