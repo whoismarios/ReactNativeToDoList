@@ -41,6 +41,34 @@ npm start
 
 --- 
 
+## How does the Application look like?
+
+# Welcome Screen
+
+![Bildschirm­foto 2023-03-23 um 14 07 38](https://user-images.githubusercontent.com/103110817/227214414-14a66a0f-4cf2-45ab-8289-2ea3dcf3a128.png)
+
+# Home
+
+![Bildschirm­foto 2023-03-23 um 14 08 59](https://user-images.githubusercontent.com/103110817/227215489-7d1c3b77-a4b9-46d2-bf2b-1403a44f0c61.png)
+
+
+# Add Task Modal
+
+![Bildschirm­foto 2023-03-23 um 14 13 49](https://user-images.githubusercontent.com/103110817/227215362-7f2b2dd2-d81d-4fb8-8e9f-e09f0e085994.png)
+
+# Statistic Modal
+
+![Bildschirm­foto 2023-03-23 um 14 09 12](https://user-images.githubusercontent.com/103110817/227215608-bfe3bd92-c8cb-4a4b-9857-6f6da6d66c55.png)
+
+
+# Settings Modal
+
+![Bildschirm­foto 2023-03-23 um 14 09 32](https://user-images.githubusercontent.com/103110817/227215658-bc69d5dd-cbce-461a-ad34-20aded1de33d.png)
+
+
+
+---
+
 ### What's next?
 - Clean up Code
 - Category Modal
