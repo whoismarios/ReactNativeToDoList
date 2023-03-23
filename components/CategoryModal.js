@@ -1,14 +1,30 @@
-import {View, Text, TextInput, ImageBackground, Pressable, StyleSheet, Modal, Alert} from 'react-native';
+import {View, Text, TextInput, ImageBackground, Pressable, StyleSheet, Modal, Alert, FlatList} from 'react-native';
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './NavbarComponent';
 
 export default function CategoryModal(props){
 
-    const [categoryArray, setCategory] = useState([]);
+    const [categoryArray, setCategoryArray] = useState([]);
+
+    const [categoryEnteredText, setCategoryEnteredText] = useState('')
 
     function displayAlert(){
       Alert.alert('Not implemented yet!', 'This function will be soon available!');
+    }
+
+    function addCategoryHandler(text){
+      setCategoryEnteredText(text);
+    }
+
+    function addCategory () {
+      if (categoryEnteredText === '') return;
+      setCategoryArray((currentCategories) => [
+        ...currentCategories, 
+        {text: categoryEnteredText, id: Math.random().toString()}
+      ]);
+      setCategoryEnteredText('');
+      console.log(categoryArray);
     }
 
     return (
@@ -19,17 +35,26 @@ export default function CategoryModal(props){
 
                 <View style={styles.addToDoContainer}>
                 
-                    <TextInput  style={styles.taskInputField} placeholder='Add a new Category' />
+                    <TextInput value={categoryEnteredText} onChangeText={addCategoryHandler} style={styles.taskInputField} placeholder='Add a new Category' />
                 
-                    <Pressable onPress={displayAlert} style={styles.getStartedButton}>
-                    <Text style={styles.getStartedButtonText}>Add</Text>
+                    <Pressable onPress={addCategory} style={styles.getStartedButton}>
+                      <Text style={styles.getStartedButtonText}>Add</Text>
                     </Pressable>
 
                 </View>
 
                 <View style={styles.addToDoContainer2}>
                     <Text style={styles.catsHeading}>Current Categories:</Text>
+                    <FlatList
+                      data={categoryArray}
+                      renderItem={({ item }) => (
+                        <Text style={styles.categoryItem}>{item.text}</Text>
+                      )}
+                      keyExtractor={(item) => item.id}
+                    />
+
                 </View>
+
 
             </ImageBackground>
             <NavbarComponent onHomePressed={props.onCloseCategoryModal} onStatsPressed={props.onCloseCatOpenStats} onAddTaskPressed={props.onCloseCatOpenTasks} onSettingsPressed={props.onCloseCatOpenSettings}/>
@@ -128,4 +153,10 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 22,
       },  
+      categoryItem: {
+        fontSize: 20,
+        marginVertical: 5,
+        marginLeft: 10,
+        textAlign: 'center',
+      },
 });
