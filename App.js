@@ -16,6 +16,7 @@ export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
   const [totalCount, setCount] = useState(0);
   const [doneCount, setDoneCount] = useState(0);
+  const [categoryArray, setCategoryArray] = useState([]);
 
   //States for the Modal Visibility
   const [modalIsVisible, setModalIsVisible] = useState(false)
@@ -36,6 +37,7 @@ export default function App() {
           setCount(data.totalCount);
           setDoneCount(data.doneCount);
           setUsername(data.username);
+          setCategoryArray(data.categoryArray);
         }
       } catch (error) {
         console.log(error);
@@ -88,15 +90,14 @@ export default function App() {
     setCount(totalCount - 1);
   }
 
-  //Add a new Goal/ Task
   function addGoalHandler (enteredGoalText) {
-    setCourseGoals((currentCourseGoals) => [
-      ...currentCourseGoals, 
+    setCourseGoals((currentCourseGoals) => [    ...(currentCourseGoals ?? []), 
       {text: enteredGoalText, id: Math.random().toString()}
     ]);
     setTotalTasksPlusOne();
     setModalIsVisible(false);
   }
+  
 
   //Delete a Goal/ Task
   function deleteGoalHandler(id){

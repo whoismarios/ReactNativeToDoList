@@ -2,16 +2,13 @@ import {View, Text, TextInput, ImageBackground, Pressable, StyleSheet, Modal, Al
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './NavbarComponent';
+import CategoryItem from './CategoryItem';
 
 export default function CategoryModal(props){
 
     const [categoryArray, setCategoryArray] = useState([]);
 
     const [categoryEnteredText, setCategoryEnteredText] = useState('')
-
-    function displayAlert(){
-      Alert.alert('Not implemented yet!', 'This function will be soon available!');
-    }
 
     function addCategoryHandler(text){
       setCategoryEnteredText(text);
@@ -25,6 +22,13 @@ export default function CategoryModal(props){
       ]);
       setCategoryEnteredText('');
       console.log(categoryArray);
+    }
+
+    function handleDeleteCat(id){
+      setCategoryArray((currentCategories) => {
+        Alert.alert('Deleted!', 'Category is deleted!');
+        return currentCategories.filter((category) => category.id !== id);
+      });
     }
 
     return (
@@ -48,7 +52,7 @@ export default function CategoryModal(props){
                     <FlatList
                       data={categoryArray}
                       renderItem={({ item }) => (
-                        <Text style={styles.categoryItem}>{item.text}</Text>
+                        <CategoryItem text={item.text} id={item.id} onDeleteCat={handleDeleteCat} />
                       )}
                       keyExtractor={(item) => item.id}
                     />
@@ -152,11 +156,5 @@ const styles = StyleSheet.create({
         padding: 10,
         color: 'white',
         fontSize: 22,
-      },  
-      categoryItem: {
-        fontSize: 20,
-        marginVertical: 5,
-        marginLeft: 10,
-        textAlign: 'center',
       },
 });
