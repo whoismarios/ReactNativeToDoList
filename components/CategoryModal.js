@@ -35,6 +35,7 @@ export default function CategoryModal(props){
     function handleDeleteCat(id){
       setCategoryArray((currentCategories) => {
         Alert.alert('Deleted!', 'Category is deleted!');
+        //TODO: Add Prop to App Component to update state in localstorage?
         return currentCategories.filter((category) => category.id !== id);
       });
     }
