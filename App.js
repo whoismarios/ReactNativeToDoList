@@ -18,6 +18,8 @@ export default function App() {
   const [doneCount, setDoneCount] = useState(0);
   const [categoryArray, setCategoryArray] = useState([]);
 
+  const [categoryEnteredText, setCategoryEnteredText] = useState('');
+
   //States for the Modal Visibility
   const [modalIsVisible, setModalIsVisible] = useState(false)
   const [usernameModalVisibility, setUsernameModalVisibility] = useState(true);
@@ -74,6 +76,7 @@ export default function App() {
           totalCount,
           doneCount,
           username,
+          categoryArray
         });
         await AsyncStorage.setItem('appData', data);
         console.log(data);
@@ -82,7 +85,24 @@ export default function App() {
       }
     }
     saveData();
-  }, [courseGoals, totalCount, doneCount, username]);
+  }, [courseGoals, totalCount, doneCount, username, categoryArray]);
+
+  // Save data to local storage whenever a state variable changes
+  useEffect(() => {
+    async function saveData() {
+      try {
+        const data = JSON.stringify({
+          categoryArray,
+        });
+        await AsyncStorage.setItem('category', data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    saveData();
+  }, [categoryArray]);
+
 
 
   //Display the Goal/ Task Input Modal
@@ -257,6 +277,16 @@ export default function App() {
     setCategoryModalVisible(true);
   }
 
+  function onSetCategoryHandler(categoryEnteredText){
+    if (categoryEnteredText === '') return;
+      setCategoryArray((currentCategories) => [
+        ...currentCategories, 
+        {text: categoryEnteredText, id: Math.random().toString()}
+      ]);
+      setCategoryEnteredText('');
+      console.log(categoryArray);
+  }
+
 
   return (
     <>
@@ -274,7 +304,7 @@ export default function App() {
 
           <StatsModal closeStatsOpenCat={handleOnCloseStatsOpenCats} visible={statsModalVisible} onCloseStatsOpenTask={handleCloseStatsOpenTask} closeStatsOpenSettings={handleCloseStatsOpenSettings} onHomePressed={setAllModalVisibilityToFalse} />
 
-          <CategoryModal visible={categoryVisible} onCloseCategoryModal={handleOnCloseCategory} onCloseCatOpenStats={handleOnCloseCatOpenStats} onCloseCatOpenTasks={handleOnCloseCatOpenTasks} onCloseCatOpenSettings={handleOnCloseCatOpenSettings} />
+          <CategoryModal setCategory={onSetCategoryHandler} visible={categoryVisible} onCloseCategoryModal={handleOnCloseCategory} onCloseCatOpenStats={handleOnCloseCatOpenStats} onCloseCatOpenTasks={handleOnCloseCatOpenTasks} onCloseCatOpenSettings={handleOnCloseCatOpenSettings} />
 
 
           

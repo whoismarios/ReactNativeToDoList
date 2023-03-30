@@ -11,42 +11,14 @@ export default function CategoryModal(props){
 
     const [categoryEnteredText, setCategoryEnteredText] = useState('');
 
-    // Save data to local storage whenever a state variable changes
-    useEffect(() => {
-      async function saveData() {
-        try {
-          const data = JSON.stringify({
-            categoryArray,
-          });
-          await AsyncStorage.setItem('category', data);
-          console.log(data + " Data saved!");
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      saveData();
-    }, [categoryArray]);
-
-    // Load data from local storage on app start and when the modal opens
-    useEffect(() => {
-      async function loadData() {
-        try {
-          const storedData = await AsyncStorage.getItem('category');
-          if (storedData !== null) {
-            const data = JSON.parse(storedData);
-            setCategoryArray(data.categoryArray);
-          }else{
-            console.log("Failed to laod the data or no data available");
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      loadData();
-    }, []);
-
     function addCategoryHandler(text){
       setCategoryEnteredText(text);
+    }
+
+    function addCatHandler(){
+      props.setCategory(categoryEnteredText);
+      setCategoryEnteredText('');
+      addCategory();
     }
 
     function addCategory () {
@@ -66,6 +38,25 @@ export default function CategoryModal(props){
       });
     }
 
+    // Load data from local storage on app start
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const storedData = await AsyncStorage.getItem('category');
+        console.log("Stored data: " + storedData);
+        if (storedData !== null) {
+          console.log(storedData);
+          const data = JSON.parse(storedData);
+          setCategoryArray(data.categoryArray);
+        }
+      } catch (error) {
+        console.log(error);
+        console.log("Error");
+      }
+    }
+    loadData();
+  }, []);
+
     return (
         <Modal visible={props.visible} animationType='slide'>
             <ImageBackground  source={require("../assets/noteBook.png")} resizeMode="cover" style={styles.image}>
@@ -76,7 +67,7 @@ export default function CategoryModal(props){
                 
                     <TextInput value={categoryEnteredText} onChangeText={addCategoryHandler} style={styles.taskInputField} placeholder='Add a new Category' />
                 
-                    <Pressable onPress={addCategory} style={styles.getStartedButton}>
+                    <Pressable onPress={addCatHandler} style={styles.getStartedButton}>
                       <Text style={styles.getStartedButtonText}>Add</Text>
                     </Pressable>
 
