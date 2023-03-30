@@ -10,6 +10,7 @@ export default function CategoryModal(props){
     const [categoryArray, setCategoryArray] = useState([]);
 
     const [categoryEnteredText, setCategoryEnteredText] = useState('');
+    
 
     function addCategoryHandler(text){
       setCategoryEnteredText(text);
@@ -56,6 +57,8 @@ export default function CategoryModal(props){
     }
     loadData();
   }, []);
+
+    
 
     return (
         <Modal visible={props.visible} animationType='slide'>

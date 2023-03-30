@@ -1,10 +1,44 @@
-import { StyleSheet, View, Text, TextInput, Button, Modal, ImageBackground, Pressable } from "react-native";
-import { useState } from "react";
+import { StyleSheet, View, Text, TextInput, Modal, ImageBackground, Pressable } from "react-native";
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavbarComponent from "./NavbarComponent";
+import { SelectList } from 'react-native-dropdown-select-list';
 
 export default function GoalInput(props) {
 
+    const data = [
+      {key:'1', value:'Mobiles'},
+      {key:'2', value:'Appliances'},
+      {key:'3', value:'Cameras'},
+      {key:'4', value:'Computers'},
+      {key:'5', value:'Vegetables'},
+      {key:'6', value:'Diary Products'},
+      {key:'7', value:'Drinks'},
+    ];
+
+    const [categoryArray, setCategoryArray] = useState([]);
+
     const [enteredGoalText, setEnteredGoalText] = useState('');
+    const [selected, setSelected] = useState("");
+
+    // Load data from local storage on app start
+    useEffect(() => {
+      async function loadData() {
+          try {
+              const storedData = await AsyncStorage.getItem('category');
+              console.log("Stored data displayed from TaskModal: " + storedData);
+              if (storedData !== null) {
+                  console.log(storedData);
+                  const data = JSON.parse(storedData);
+                  setCategoryArray(data.categoryArray);
+              }
+          } catch (error) {
+              console.log(error);
+              console.log("Error");
+          }
+      }
+      loadData();
+  }, []);
 
     function goalInputHandler (enteredText){
       setEnteredGoalText(enteredText);
@@ -25,6 +59,13 @@ export default function GoalInput(props) {
                 <Text style={styles.heading} >Add a new Task</Text>
                 <TextInput value={enteredGoalText} onChangeText={goalInputHandler} style={styles.taskInputField} placeholder='write your task ...' />
                
+                <SelectList 
+                    setSelected={(val) => setSelected(val)} 
+                    data={categoryArray.map(category => ({ label: category.text, value: category.text }))} 
+                    save="value"
+                />
+
+
                 <Pressable style={styles.getStartedButton} onPress={addGoalHandler}>
                   <Text style={styles.getStartedButtonText}>Add</Text>
                 </Pressable>
@@ -51,7 +92,7 @@ const styles = StyleSheet.create({
         width: '90%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        height: '35%',
+        height: '60%',
         borderWidth: 2,
         borderColor: 'grey',
         borderRadius: 15,
@@ -62,7 +103,7 @@ const styles = StyleSheet.create({
       },
       taskInputField: {
         width: '90%',
-        height: '30%',
+        height: '25%',
         marginLeft: 'auto',
         marginRight: 'auto',
         borderWidth: 1,
@@ -73,7 +114,8 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 28,
         fontFamily: 'Arial',
-        marginTop: 50
+        marginTop: 50,
+        marginBottom: 40,
       },
       taskContainer: {
         width: '90%',
