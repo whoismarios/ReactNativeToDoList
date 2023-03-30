@@ -46,6 +46,25 @@ export default function App() {
     loadData();
   }, []);
 
+  // Load data from local storage on app start
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const storedData = await AsyncStorage.getItem('category');
+        console.log("Stored data: " + storedData);
+        if (storedData !== null) {
+          console.log(storedData);
+          const data = JSON.parse(storedData);
+          setCategoryArray(data.categoryArray);
+        }
+      } catch (error) {
+        console.log(error);
+        console.log("Error");
+      }
+    }
+    loadData();
+  }, []);
+
   // Save data to local storage whenever a state variable changes
   useEffect(() => {
     async function saveData() {
@@ -64,6 +83,7 @@ export default function App() {
     }
     saveData();
   }, [courseGoals, totalCount, doneCount, username]);
+
 
   //Display the Goal/ Task Input Modal
   function startAddGoalHandler(){
