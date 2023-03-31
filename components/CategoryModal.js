@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './NavbarComponent';
 import CategoryItem from './CategoryItem';
-import styles from '../styles/StyleSheet';
+import styles from '../styles/CatStyleSheet';
 
 export default function CategoryModal(props){
 
