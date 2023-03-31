@@ -46,6 +46,13 @@ export default function SettingsModal(props) {
             </View>
 
             <View style={styles.row}>
+              <Text style={styles.label}>Delete all Categories</Text>
+              <Pressable style={styles.button} onPress={props.onDeleteCategories}>
+                <Text style={styles.buttonText}>Delete</Text>
+              </Pressable>
+            </View>
+
+            <View style={styles.row}>
               <TextInput placeholder='Change Username' placeholderTextColor={'grey'} style={[styles.label, styles.input]} onChangeText={onChangeUsername} />
               <Pressable style={styles.button} onPress={handleChangeUsername}>
                 <Text style={styles.buttonText}>Change</Text>
