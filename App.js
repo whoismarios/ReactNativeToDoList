@@ -54,9 +54,7 @@ export default function App() {
     async function loadData() {
       try {
         const storedData = await AsyncStorage.getItem('category');
-        console.log("Stored data: " + storedData);
         if (storedData !== null) {
-          console.log(storedData);
           const data = JSON.parse(storedData);
           setCategoryArray(data.categoryArray);
         }
@@ -278,7 +276,6 @@ export default function App() {
         {text: categoryEnteredText, id: Math.random().toString()}
       ]);
       setCategoryEnteredText('');
-      console.log(categoryArray);
   }
 
 
