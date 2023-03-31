@@ -41,15 +41,13 @@ export default function GoalInput(props) {
       Keyboard.dismiss();
     }
 
-    function handleCancelPressed(){
-      console.log('Cancel Pressed!');
-    }
+    
 
     return (
         <Modal visible={props.visible} animationType='slide'>
           <ImageBackground source={require("./../assets/noteBook.png")} resizeMode="cover" style={styles.image} >
 
-            <Pressable style={styles.backBox} onPress={handleCancelPressed}>
+            <Pressable style={styles.backBox} onPress={props.cancelPressed}>
               <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
             </Pressable>
             

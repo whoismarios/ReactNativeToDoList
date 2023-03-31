@@ -278,6 +278,11 @@ export default function App() {
       setCategoryEnteredText('');
   }
 
+  function handleOnCancelPressed(){
+    console.log('Cancel Pressed!');
+    setAllModalVisibilityToFalse();
+  }
+
 
   return (
     <>
@@ -289,7 +294,7 @@ export default function App() {
 
           <WelcomeScreenModal onSave={handleSaveUsername} visible={usernameModalVisibility} />
 
-          <GoalInput onCloseGoalOpenCat={handleOnCloseGoalOpenCat} closeTaskOpenSettings={handleCloseStatsOpenSettings} closeTaskOpenStats={handleCloseSettingsOpenStats} onCancel={endAddGoalHandler} visible={modalIsVisible} onAddGoal={addGoalHandler}  />
+          <GoalInput cancelPressed={handleOnCancelPressed} onCloseGoalOpenCat={handleOnCloseGoalOpenCat} closeTaskOpenSettings={handleCloseStatsOpenSettings} closeTaskOpenStats={handleCloseSettingsOpenStats} onCancel={endAddGoalHandler} visible={modalIsVisible} onAddGoal={addGoalHandler}  />
 
           <SettingsModal onCloseSettingsOpenCats={handleOnCloseSettingsOpenCats} onCloseSettingsOpenTask={handleCloseSettingsOpenTask} closeSettingsOpenStats={handleCloseSettingsOpenStats} onResetUsername={handleOnResetUsername} handleChangeUsername={handleOnChangeUsername} onCloseSettingsModal={handleOnCloseSettingsModal} visible={settingsModalVisible} onResetStats={handleOnResetStats} onDeleteTasks={handleOnDeleteTasks} onChangeUsername={handleOnChangeUsername}/>
 

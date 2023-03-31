@@ -89,15 +89,18 @@ const styles = StyleSheet.create({
         fontSize: 22,
       }, 
       backIcon: {
-        position: 'relative',
-        width: 50,
-        height: 50, 
-        bottom: -50,
+       height: 50,
+       width: 50,
         
       } ,
+      //height 100% to make it work or update ui
       backBox:{
         height: '5%',
-        marginBottom: 0,
+        width: 'auto',
+        position: 'relative',
+        width: '100%',
+        
+        bottom: -50,
       },
 });
 
