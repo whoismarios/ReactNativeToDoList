@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TextInput, Modal, ImageBackground, Pressable, Keyboard} from "react-native";
+import { Image, View, Text, TextInput, Modal, ImageBackground, Pressable, Keyboard} from "react-native";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavbarComponent from "./NavbarComponent";
@@ -41,10 +41,18 @@ export default function GoalInput(props) {
       Keyboard.dismiss();
     }
 
+    function handleCancelPressed(){
+      console.log('Cancel Pressed!');
+    }
+
     return (
         <Modal visible={props.visible} animationType='slide'>
           <ImageBackground source={require("./../assets/noteBook.png")} resizeMode="cover" style={styles.image} >
 
+            <Pressable style={styles.backBox} onPress={handleCancelPressed}>
+              <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
+            </Pressable>
+            
             <View style={styles.displayView}>
 
               <View style={styles.addToDoContainer}>

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     displayView:{
-      height: '100%',
+      height: '95%',
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 28,
         fontFamily: 'Arial',
-        marginTop: 50,
+        marginTop: 30,
         marginBottom: 40,
       },
       taskContainer: {
@@ -87,7 +87,18 @@ const styles = StyleSheet.create({
         padding: 10,
         color: 'white',
         fontSize: 22,
-      },  
+      }, 
+      backIcon: {
+        position: 'relative',
+        width: 50,
+        height: 50, 
+        bottom: -50,
+        
+      } ,
+      backBox:{
+        height: '5%',
+        marginBottom: 0,
+      },
 });
 
 export default styles;
