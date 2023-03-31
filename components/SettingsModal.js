@@ -1,4 +1,4 @@
-import { View, Text, TextInput, ImageBackground, Modal, Pressable } from 'react-native';
+import { View, Text, TextInput, ImageBackground, Modal, Pressable, Image } from 'react-native';
 import { useState } from 'react';
 import NavbarComponent from './NavbarComponent'
 import styles from '../styles/SettingsStyleSheet';
@@ -22,6 +22,10 @@ export default function SettingsModal(props) {
   return (
     <Modal visible={props.visible} animationType='slide'>
       <ImageBackground  source={require("../assets/noteBook.png")} resizeMode="cover" style={styles.image}>
+
+        <Pressable style={styles.backBox} onPress={props.cancelPressed}>
+          <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
+        </Pressable>
 
         <Text style={styles.heading}>Settings</Text>
 

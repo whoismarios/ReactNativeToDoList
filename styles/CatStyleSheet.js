@@ -91,6 +91,22 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 22,
       },
+      backIcon: {
+        height: 50,
+        width: 50,
+        marginTop: 60,
+        marginLeft: 10,
+     },
+     backBox:{
+        height: '15%',
+        width: 'auto',
+        position: 'relative',
+        width: '100%',
+        borderColor: 'grey',
+        borderBottomWidth: 1,
+        top: -275,
+        marginBottom: -50
+     },
 });
 
 export default styles;

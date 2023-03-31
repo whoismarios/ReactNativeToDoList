@@ -1,4 +1,4 @@
-import { StyleSheet, Modal, ImageBackground, View, Text, Dimensions } from 'react-native';
+import { Pressable, Image, Modal, ImageBackground, View, Text, Dimensions } from 'react-native';
 import { useEffect, useState } from 'react';
 import NavbarComponent from './NavbarComponent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -81,6 +81,10 @@ export default function StatsModal(props){
     return (
         <Modal visible={props.visible} animationType='slide'>
             <ImageBackground style={styles.backgroundImage} resizeMode="cover" source={require('./../assets/noteBook.png')}>
+
+                <Pressable style={styles.backBox} onPress={props.cancelPressed}>
+                    <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
+                </Pressable>
 
                 <Text style={styles.heading}>Statistics</Text>
 

@@ -1,4 +1,4 @@
-import {View, Text, TextInput, ImageBackground, Pressable, Modal, Alert, FlatList, Keyboard} from 'react-native';
+import {View, Text, TextInput, ImageBackground, Pressable, Modal, Alert, FlatList, Keyboard, Image} from 'react-native';
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './NavbarComponent';
@@ -20,7 +20,6 @@ export default function CategoryModal(props){
       setCategoryEnteredText('');
       addCategory();
       Keyboard.dismiss();
-      
     }
 
     function addCategory () {
@@ -65,12 +64,18 @@ export default function CategoryModal(props){
     return (
         <Modal visible={props.visible} animationType='slide'>
             <ImageBackground  source={require("../assets/noteBook.png")} resizeMode="cover" style={styles.image}>
+                  
+                <Pressable style={styles.backBox} onPress={props.cancelPressed}>
+                    <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
+                </Pressable>
 
                 <Text style={styles.heading}>Categories</Text>
 
                 <View style={styles.addToDoContainer}>
                 
-                    <TextInput onSubmitEditing={Keyboard.dismiss} value={categoryEnteredText} onChangeText={addCategoryHandler} style={styles.taskInputField} placeholder='Add a new Category' />
+                  
+
+                  <TextInput onSubmitEditing={Keyboard.dismiss} value={categoryEnteredText} onChangeText={addCategoryHandler} style={styles.taskInputField} placeholder='Add a new Category' />
                 
                     <Pressable onPress={addCatHandler} style={styles.getStartedButton}>
                       <Text style={styles.getStartedButtonText}>Add</Text>

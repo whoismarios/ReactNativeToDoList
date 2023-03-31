@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     heading:{
         fontSize: 60,
         textAlign: 'center',
-        marginTop: 100,
+        marginTop: 25,
         marginBottom: 0,
     },
     backgroundImage:{
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
         height: '80%',
     },
     statsTextContainer:{
-        flex: 1,
+        flex: 2,
         textAlign: 'center',
         alignItems: 'center',
-        marginTop: -400,
+        marginTop: -250,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
@@ -43,7 +43,22 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderColor: 'grey',
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
-    }
+    },
+    backIcon: {
+       height: 50,
+       width: 50,
+       marginTop: 50,
+       marginLeft: 10,
+    },
+    backBox:{
+        height: '15%',
+        width: 'auto',
+        position: 'relative',
+        width: '100%',
+        borderColor: 'grey',
+        borderBottomWidth: 1,
+       flex: 0.5,
+    },
 });
 
 export default styles;

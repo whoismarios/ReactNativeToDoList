@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
       fontSize: 60,
       textAlign: 'center',
       marginTop: -250,
-      marginBottom: 100,
+      marginBottom: 50,
     },
     image: {
       flex: 3,
@@ -60,6 +60,22 @@ const styles = StyleSheet.create({
       fontSize: 22,
       textAlign: 'center',
     },
+    backIcon: {
+      height: 50,
+      width: 50,
+      marginTop: 0,
+      marginLeft: 10,
+   },
+   backBox:{
+      height: '10%',
+      width: 'auto',
+      position: 'relative',
+      width: '100%',
+      borderColor: 'grey',
+      borderBottomWidth: 1,
+      top: -300,
+      marginBottom: -50
+   },
   });
 
 export default styles;
