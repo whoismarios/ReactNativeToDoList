@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     displayView:{
-      height: '95%',
+      height: '85%',
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: 'rgba(255,255,255,0.9)',
         padding: 5,
-        marginVertical:100,
+        marginVertical:75,
       },
       taskInputField: {
         width: '90%',
@@ -91,16 +91,18 @@ const styles = StyleSheet.create({
       backIcon: {
        height: 50,
        width: 50,
-        
+      marginTop: 50,
+      marginLeft: 10,
       } ,
       //height 100% to make it work or update ui
       backBox:{
-        height: '5%',
+        height: '15%',
         width: 'auto',
         position: 'relative',
         width: '100%',
-        
-        bottom: -50,
+        borderColor: 'grey',
+        borderBottomWidth: 1,
+      
       },
 });
 
