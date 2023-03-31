@@ -1,4 +1,4 @@
-import {View, Text, TextInput, ImageBackground, Pressable, Modal, Alert, FlatList} from 'react-native';
+import {View, Text, TextInput, ImageBackground, Pressable, Modal, Alert, FlatList, Keyboard} from 'react-native';
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './NavbarComponent';
@@ -10,7 +10,6 @@ export default function CategoryModal(props){
     const [categoryArray, setCategoryArray] = useState([]);
 
     const [categoryEnteredText, setCategoryEnteredText] = useState('');
-    
 
     function addCategoryHandler(text){
       setCategoryEnteredText(text);
@@ -20,6 +19,8 @@ export default function CategoryModal(props){
       props.setCategory(categoryEnteredText);
       setCategoryEnteredText('');
       addCategory();
+      Keyboard.dismiss();
+      
     }
 
     function addCategory () {
@@ -69,7 +70,7 @@ export default function CategoryModal(props){
 
                 <View style={styles.addToDoContainer}>
                 
-                    <TextInput value={categoryEnteredText} onChangeText={addCategoryHandler} style={styles.taskInputField} placeholder='Add a new Category' />
+                    <TextInput onSubmitEditing={Keyboard.dismiss} value={categoryEnteredText} onChangeText={addCategoryHandler} style={styles.taskInputField} placeholder='Add a new Category' />
                 
                     <Pressable onPress={addCatHandler} style={styles.getStartedButton}>
                       <Text style={styles.getStartedButtonText}>Add</Text>
