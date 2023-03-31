@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Arial',
         color: 'black',
-        width: '60%',
+        width: '30%',
       },
       singleTaskContainer: {
         borderWidth: 2,
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.9)',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         padding: 5,
         marginTop: 15,
         alignItems: 'center',

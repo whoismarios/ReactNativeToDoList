@@ -81,13 +81,10 @@ export default function StatsModal(props){
     return (
         <Modal visible={props.visible} animationType='slide'>
             <ImageBackground style={styles.backgroundImage} resizeMode="cover" source={require('./../assets/noteBook.png')}>
-
                 <Pressable style={styles.backBox} onPress={props.cancelPressed}>
                     <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
                 </Pressable>
-
                 <Text style={styles.heading}>Statistics</Text>
-
                 <View style={styles.statsView}>
                     <PieChart
                         data={pieChartData}
@@ -103,17 +100,12 @@ export default function StatsModal(props){
                         style={styles.pieChart}
                         
                     />
-                    
                 </View>
-
                 <View style={styles.statsTextContainer}>
                     <Text style={styles.statsText} onPress={updateUI()}>Total Tasks: {totalCount}</Text>
                     <Text style={styles.statsText}>Done: {doneCount}</Text>
                     <Text style={styles.statsText}>Tasks Left: {totalCount - doneCount}</Text>
                 </View>
-
-                
-
             </ImageBackground>
             
             <NavbarComponent onCategoryPressed={props.closeStatsOpenCat} onHomePressed={handleOnHomePressed} onSettingsPressed={props.closeStatsOpenSettings} onAddTaskPressed={props.onCloseStatsOpenTask} />

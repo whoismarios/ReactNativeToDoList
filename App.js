@@ -1,4 +1,4 @@
-import { View, ImageBackground, SafeAreaView, FlatList, Alert, Text, Image, Pressable } from 'react-native';
+import { View, ImageBackground, FlatList, Alert, Text } from 'react-native';
 import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import WelcomeScreenModal from './components/WelcomeScreenModal';
@@ -51,6 +51,9 @@ export default function App() {
 
   // Load data from local storage on app start
   useEffect(() => {
+    loadData();
+  }, []);
+  
     async function loadData() {
       try {
         const storedData = await AsyncStorage.getItem('category');
@@ -63,9 +66,6 @@ export default function App() {
         console.log("Error");
       }
     }
-    loadData();
-  }, []);
-
   // Save data to local storage whenever a state variable changes
   useEffect(() => {
     async function saveData() {
@@ -88,7 +88,11 @@ export default function App() {
 
   // Save data to local storage whenever a state variable changes
   useEffect(() => {
-    async function saveData() {
+    saveData();
+    
+  }, [categoryArray]);
+
+async function saveData() {
       try {
         const data = JSON.stringify({
           categoryArray,
@@ -99,10 +103,7 @@ export default function App() {
         console.log(error);
       }
     }
-    saveData();
-  }, [categoryArray]);
-
-
+    
 
   //Display the Goal/ Task Input Modal
   function startAddGoalHandler(){
@@ -129,13 +130,17 @@ export default function App() {
     setCount(totalCount - 1);
   }
 
-  function addGoalHandler (enteredGoalText) {
-    setCourseGoals((currentCourseGoals) => [    ...(currentCourseGoals ?? []), 
-      {text: enteredGoalText, id: Math.random().toString()}
+  function addGoalHandler(enteredGoalText, selectedCategory ) {
+    console.log("Identify: " + enteredGoalText);
+    console.log("Identify: " + selectedCategory);
+    setCourseGoals((currentCourseGoals) => [
+      ...(currentCourseGoals ?? []),
+      { text: enteredGoalText, category: selectedCategory, id: Math.random().toString() },
     ]);
     setTotalTasksPlusOne();
     setModalIsVisible(false);
   }
+  
   
 
   //Delete a Goal/ Task
@@ -145,6 +150,18 @@ export default function App() {
       Alert.alert('Deleted!', 'Task is deleted!');
       return currentCourseGoals.filter((goal) => goal.id !== id);
     });
+  }
+
+
+  function handleDeleteCat(id){
+    setCategoryArray((currentCategories) => {
+      Alert.alert('Deleted!', 'Category is deleted!');
+      //TODO: Add Prop to App Component to update state in localstorage?
+      
+      return currentCategories.filter((category) => category.id !== id);
+
+    });
+    
   }
 
   //Goal/ Task is done and gets deleted from the goal-state
@@ -286,6 +303,8 @@ export default function App() {
     setCategoryArray([]);
   }
 
+  
+
 
   return (
     <>
@@ -303,7 +322,7 @@ export default function App() {
 
           <StatsModal cancelPressed={handleOnCancelPressed} closeStatsOpenCat={handleOnCloseStatsOpenCats} visible={statsModalVisible} onCloseStatsOpenTask={handleCloseStatsOpenTask} closeStatsOpenSettings={handleCloseStatsOpenSettings} onHomePressed={setAllModalVisibilityToFalse} />
 
-          <CategoryModal cancelPressed={handleOnCancelPressed} setCategory={onSetCategoryHandler} visible={categoryVisible} onCloseCategoryModal={handleOnCloseCategory} onCloseCatOpenStats={handleOnCloseCatOpenStats} onCloseCatOpenTasks={handleOnCloseCatOpenTasks} onCloseCatOpenSettings={handleOnCloseCatOpenSettings} />
+          <CategoryModal deleteCat={handleDeleteCat} cancelPressed={handleOnCancelPressed} setCategory={onSetCategoryHandler} visible={categoryVisible} onCloseCategoryModal={handleOnCloseCategory} onCloseCatOpenStats={handleOnCloseCatOpenStats} onCloseCatOpenTasks={handleOnCloseCatOpenTasks} onCloseCatOpenSettings={handleOnCloseCatOpenSettings} />
 
 
           
@@ -311,7 +330,7 @@ export default function App() {
               data={courseGoals} 
               renderItem={(itemData) => {
                 return (
-                  <GoalItem id={itemData.item.id} onDoneItem={doneGoalHandler} onDeleteItem={deleteGoalHandler} text={itemData.item.text} />
+                  <GoalItem id={itemData.item.id} onDoneItem={doneGoalHandler} onDeleteItem={deleteGoalHandler} text={itemData.item.text} category={itemData.item.category} />
                 );
               }} 
               keyExtractor = {(item, index) => { 
