@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TextInput, Modal, ImageBackground, Pressable } from "react-native";
+import { StyleSheet, View, Text, TextInput, Modal, ImageBackground, Pressable, Keyboard} from "react-native";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavbarComponent from "./NavbarComponent";
@@ -47,6 +47,7 @@ export default function GoalInput(props) {
     function addGoalHandler(){
       props.onAddGoal(enteredGoalText);
       setEnteredGoalText('');
+      Keyboard.dismiss();
     }
 
     return (
@@ -57,7 +58,7 @@ export default function GoalInput(props) {
 
               <View style={styles.addToDoContainer}>
                 <Text style={styles.heading} >Add a new Task</Text>
-                <TextInput value={enteredGoalText} onChangeText={goalInputHandler} style={styles.taskInputField} placeholder='write your task ...' />
+                <TextInput onSubmitEditing={Keyboard.dismiss} value={enteredGoalText} onChangeText={goalInputHandler} style={styles.taskInputField} placeholder='write your task ...' />
                
                 <SelectList 
                     setSelected={(val) => setSelected(val)} 
