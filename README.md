@@ -38,6 +38,7 @@ npm start
 - React Native Core Components (Modal, TextInput, ImageBackground, FlatList, Alert, Pressable ...)
 - Custom Components with props
 - React-Native-Chart-Kit
+- React-Native-Haptics (expo-haptics)
 
 --- 
 
@@ -71,7 +72,6 @@ npm start
 
 ### What's next?
 - Clean up Code
-- Category Modal
 - Detailed Documentation and README.md file
 
 
