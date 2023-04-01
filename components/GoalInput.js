@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavbarComponent from "./NavbarComponent";
 import { SelectList } from 'react-native-dropdown-select-list';
 import styles from "../styles/GoalInputStyleSheet";
+import * as Haptics from 'expo-haptics';
 
 export default function GoalInput(props) {
 
@@ -39,6 +40,8 @@ useEffect(()=> {
   }
 
   function addGoalHandler(){
+    Haptics.notificationAsync(
+      Haptics.NotificationFeedbackType.Success)
     props.onAddGoal(enteredGoalText, selectedCategory );
     setEnteredGoalText('');
     setSelectedCategory('');
