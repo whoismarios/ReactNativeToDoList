@@ -3,6 +3,7 @@ import { View, Modal, Button, StyleSheet, Text, TextInput, Image, Pressable } fr
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 import styles from '../styles/WelcomeModalStyleSheet';
+import * as Haptics from 'expo-haptics';
 
 
 export default function WelcomeScreenModal(props) {
@@ -35,11 +36,15 @@ export default function WelcomeScreenModal(props) {
       setUsername(inputValue);
       setInputValue('');
       props.onSave(inputValue);
+      Haptics.notificationAsync(
+        Haptics.NotificationFeedbackType.Success)
     }
   }
 
   if (username) {
     // If the username is set, return null to prevent rendering the modal
+    Haptics.notificationAsync(
+      Haptics.NotificationFeedbackType.Success)
     return null;
   }
 

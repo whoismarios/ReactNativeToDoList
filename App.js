@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './components/NavbarComponent';
 import CategoryModal from './components/CategoryModal';
 import styles from './styles/AppStyleSheet';
+import * as Haptics from 'expo-haptics';
 
 export default function App() {
   
@@ -148,6 +149,8 @@ async function saveData() {
     setCourseGoals((currentCourseGoals) => {
       setTotalTasksMinusOne();
       Alert.alert('Deleted!', 'Task is deleted!');
+      Haptics.notificationAsync(
+        Haptics.NotificationFeedbackType.Success)
       return currentCourseGoals.filter((goal) => goal.id !== id);
     });
   }
@@ -157,7 +160,8 @@ async function saveData() {
     setCategoryArray((currentCategories) => {
       Alert.alert('Deleted!', 'Category is deleted!');
       //TODO: Add Prop to App Component to update state in localstorage?
-      
+      Haptics.notificationAsync(
+        Haptics.NotificationFeedbackType.Success)
       return currentCategories.filter((category) => category.id !== id);
 
     });
@@ -169,6 +173,8 @@ async function saveData() {
     setCourseGoals((currentCourseGoals) => {
       setDoneCountCaller();
       Alert.alert('Done!', 'Congratulations, you completed another Task!');
+      Haptics.notificationAsync(
+        Haptics.NotificationFeedbackType.Success)
       return currentCourseGoals.filter((goal) => goal.id !== id);
     });
   }
@@ -296,6 +302,8 @@ async function saveData() {
   }
 
   function handleOnCancelPressed(){
+    Haptics.notificationAsync(
+      Haptics.NotificationFeedbackType.Error)
     setAllModalVisibilityToFalse();
   }
 

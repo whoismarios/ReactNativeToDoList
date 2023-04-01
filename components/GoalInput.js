@@ -25,7 +25,6 @@ export default function GoalInput(props) {
             }
         } catch (error) {
             console.log(error);
-            console.log("Error");
         }
     }
     loadData();
@@ -49,7 +48,7 @@ useEffect(()=> {
   }
 
   function handleCategorySelect(val) {
-    console.log(val);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
     setSelectedCategory(val);
     return val.value;
   }
