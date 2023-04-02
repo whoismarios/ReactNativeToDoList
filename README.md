@@ -61,6 +61,9 @@ npm start
 
 ![Bildschirm­foto 2023-03-23 um 14 09 12](https://user-images.githubusercontent.com/103110817/227215608-bfe3bd92-c8cb-4a4b-9857-6f6da6d66c55.png)
 
+#### Category Modal
+
+![Bildschirmfoto 2023-04-02 um 22 48 01](https://user-images.githubusercontent.com/103110817/229378322-b2bdeb05-74d5-4361-bf1f-17c28319a31b.png)
 
 #### Settings Modal
 
