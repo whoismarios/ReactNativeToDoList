@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './NavbarComponent';
 import CategoryItem from './CategoryItem';
+import Carousel from 'react-native-snap-carousel';
 import styles from '../styles/CatStyleSheet';
 
 export default function CategoryModal(props){
@@ -93,7 +94,7 @@ export default function CategoryModal(props){
                   <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
               </Pressable>
 
-              <Pressable style={styles.topIcon} onPress={props.closeTaskOpenSettings}>
+              <Pressable style={styles.topIcon} onPress={props.onCloseCatOpenSettings2}>
                   <Image style={styles.backIcon} source={require('./../assets/user.png')} />
                   <Text style={styles.username}>{username}</Text>
               </Pressable>
@@ -114,8 +115,10 @@ export default function CategoryModal(props){
                 </View>
 
                 <View style={styles.addToDoContainer2}>
-                    <Text style={styles.catsHeading}>Current Categories:</Text>
-                    <FlatList
+                    
+                   <FlatList
+                      horizontal={true}
+                      style={styles.flatlistScroll}
                       data={categoryArray}
                       renderItem={({ item }) => (
                         <CategoryItem text={item.text} id={item.id} onDeleteCat={props.deleteCat} />
@@ -130,4 +133,18 @@ export default function CategoryModal(props){
             <NavbarComponent onHomePressed={props.onCloseCategoryModal} onStatsPressed={props.onCloseCatOpenStats} onAddTaskPressed={props.onCloseCatOpenTasks} onSettingsPressed={props.onCloseCatOpenSettings}/>
         </Modal>
     );
+    /**
+     * 
+    <Text style={styles.catsHeading}>Current Categories:</Text>
+                   
+<Carousel layout={'default'} 
+                  
+                  renderItem={({ item }) => (
+                    <CarouselItem data={categoryArray} text={item.text} id={item.id} onDeleteCat={props.deleteCat} />
+                  )}
+                  keyExtractor={(item) => item.id}
+                  
+                  />
+    
+     */
 }

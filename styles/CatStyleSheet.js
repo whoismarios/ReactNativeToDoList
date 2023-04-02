@@ -31,16 +31,14 @@ const styles = StyleSheet.create({
         marginVertical:50,
       },
       addToDoContainer2: {
-        width: '90%',
+        width: '100%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        height: '25%',
-        borderWidth: 2,
-        borderColor: 'grey',
-        borderRadius: 15,
-        backgroundColor: 'rgba(255,255,255,0.9)',
+        height: '32.5%',
+        
+        
         padding: 5,
-        marginTop: 25,
+        marginTop: -40,
         marginVertical:-100,
       },
       taskInputField: {
@@ -96,10 +94,10 @@ const styles = StyleSheet.create({
         width: 50,
         marginTop: 60,
         marginLeft: 20,
-       marginRight: 30,
+        marginRight: 30,
      },
      backBox:{
-        height: '14%',
+        height: '14.5%',
         width: 'auto',
         position: 'relative',
         width: '100%',
@@ -117,7 +115,11 @@ const styles = StyleSheet.create({
      username:{
       textAlign: 'center',
       marginRight: 10,
-    }
+    },
+    flatlistScroll:{
+      
+      
+    },
 });
 
 export default styles;

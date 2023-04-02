@@ -327,9 +327,9 @@ async function saveData() {
 
           <SettingsModal onDeleteCategories={handleOnDeleteCategories} cancelPressed={handleOnCancelPressed} onCloseSettingsOpenCats={handleOnCloseSettingsOpenCats} onCloseSettingsOpenTask={handleCloseSettingsOpenTask} closeSettingsOpenStats={handleCloseSettingsOpenStats} onResetUsername={handleOnResetUsername} handleChangeUsername={handleOnChangeUsername} onCloseSettingsModal={handleOnCloseSettingsModal} visible={settingsModalVisible} onResetStats={handleOnResetStats} onDeleteTasks={handleOnDeleteTasks} onChangeUsername={handleOnChangeUsername}/>
 
-          <StatsModal cancelPressed={handleOnCancelPressed} closeStatsOpenCat={handleOnCloseStatsOpenCats} visible={statsModalVisible} onCloseStatsOpenTask={handleCloseStatsOpenTask} closeStatsOpenSettings={handleCloseStatsOpenSettings} onHomePressed={setAllModalVisibilityToFalse} />
+          <StatsModal onCloseStatsOpenSettings={handleOnCloseCatOpenSettings} cancelPressed={handleOnCancelPressed} closeStatsOpenCat={handleOnCloseStatsOpenCats} visible={statsModalVisible} onCloseStatsOpenTask={handleCloseStatsOpenTask} closeStatsOpenSettings={handleCloseStatsOpenSettings} onHomePressed={setAllModalVisibilityToFalse} />
 
-          <CategoryModal deleteCat={handleDeleteCat} cancelPressed={handleOnCancelPressed} setCategory={onSetCategoryHandler} visible={categoryVisible} onCloseCategoryModal={handleOnCloseCategory} onCloseCatOpenStats={handleOnCloseCatOpenStats} onCloseCatOpenTasks={handleOnCloseCatOpenTasks} onCloseCatOpenSettings={handleOnCloseCatOpenSettings} />
+          <CategoryModal onCloseCatOpenSettings2={handleOnCloseCatOpenSettings} deleteCat={handleDeleteCat} cancelPressed={handleOnCancelPressed} setCategory={onSetCategoryHandler} visible={categoryVisible} onCloseCategoryModal={handleOnCloseCategory} onCloseCatOpenStats={handleOnCloseCatOpenStats} onCloseCatOpenTasks={handleOnCloseCatOpenTasks} onCloseCatOpenSettings={handleOnCloseCatOpenSettings} />
 
 
           
