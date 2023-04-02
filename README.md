@@ -53,13 +53,14 @@ npm start
 ![Bildschirm­foto 2023-03-23 um 14 08 59](https://user-images.githubusercontent.com/103110817/227215489-7d1c3b77-a4b9-46d2-bf2b-1403a44f0c61.png)
 
 
-#### Add Task Modal
+#### Add Task and Category Modal
 
-![Bildschirm­foto 2023-03-23 um 14 13 49](https://user-images.githubusercontent.com/103110817/227215362-7f2b2dd2-d81d-4fb8-8e9f-e09f0e085994.png)
+![Bildschirmfoto 2023-04-02 um 22 54 47](https://user-images.githubusercontent.com/103110817/229378574-93271576-4c5a-43fe-b06d-e2da0a43ef58.png)
+
 
 #### Statistic Modal
 
-![Bildschirm­foto 2023-03-23 um 14 09 12](https://user-images.githubusercontent.com/103110817/227215608-bfe3bd92-c8cb-4a4b-9857-6f6da6d66c55.png)
+![Bildschirmfoto 2023-04-02 um 22 52 58](https://user-images.githubusercontent.com/103110817/229378488-0459d55c-a04c-483b-a601-279240ddf961.png)
 
 #### Category Modal
 
@@ -67,7 +68,8 @@ npm start
 
 #### Settings Modal
 
-![Bildschirm­foto 2023-03-23 um 14 09 32](https://user-images.githubusercontent.com/103110817/227215658-bc69d5dd-cbce-461a-ad34-20aded1de33d.png)
+![Bildschirmfoto 2023-04-02 um 22 55 09](https://user-images.githubusercontent.com/103110817/229378564-78b0483e-bf12-43db-9231-7073cb61144a.png)
+
 
 
 
