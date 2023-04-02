@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         marginRight: 30,
      },
      backBox:{
-        height: '14.5%',
+        height: '15%',
         width: 'auto',
         position: 'relative',
         width: '100%',

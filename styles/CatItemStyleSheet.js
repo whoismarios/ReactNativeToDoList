@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         height: 30,
       },*/
       catView: {
-        width: '75%',
+        width: 250,
         height: '95%',
         borderWidth: 1,
         borderColor: 'grey',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
        
         marginTop: 2.5,
         marginLeft: 10,
-        marginRight: -30,
+        marginRight: 0,
       },
       categoryItem: {
         marginHorizontal: 10,

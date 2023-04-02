@@ -104,8 +104,6 @@ export default function CategoryModal(props){
 
                 <View style={styles.addToDoContainer}>
                 
-                  
-
                   <TextInput onSubmitEditing={Keyboard.dismiss} value={categoryEnteredText} onChangeText={addCategoryHandler} style={styles.taskInputField} placeholder='Add a new Category' />
                 
                     <Pressable onPress={addCatHandler} style={styles.getStartedButton}>
@@ -117,9 +115,12 @@ export default function CategoryModal(props){
                 <View style={styles.addToDoContainer2}>
                     
                    <FlatList
+                      
                       horizontal={true}
                       style={styles.flatlistScroll}
                       data={categoryArray}
+                      initialNumToRender={categoryArray.length}
+                      windowSize={1}
                       renderItem={({ item }) => (
                         <CategoryItem text={item.text} id={item.id} onDeleteCat={props.deleteCat} />
                       )}

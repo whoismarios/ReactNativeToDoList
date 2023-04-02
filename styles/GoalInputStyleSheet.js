@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     displayView:{
-      height: '87%',
+      height: '86%',
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
       } ,
       //height 100% to make it work or update ui
       backBox:{
-        height: '13%',
+        height: '14%',
         width: 'auto',
         position: 'relative',
         width: '100%',

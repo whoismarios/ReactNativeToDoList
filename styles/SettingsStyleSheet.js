@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
       opacity: 0.8,
     },
     body: {
-      height: '35%',
+      height: '40%',
       marginVertical: 300,
       width: '100%',
       backgroundColor: '#fff',
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
       marginRight: 30,
      },
      backBox:{
-       height: '13%',
+       height: '14%',
        width: 'auto',
        position: 'relative',
        width: '100%',

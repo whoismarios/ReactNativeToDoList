@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
        marginRight: 30,
     },
     backBox:{
-        height: '13%',
+        height: '15%',
         width: 'auto',
         position: 'relative',
         width: '100%',
@@ -64,10 +64,10 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingBottom: 5,
+        paddingBottom: 10,
     },
     secondBox:{
-        width: '87%',
+        width: '85%',
     },  
     username:{
         textAlign: 'center',
