@@ -48,17 +48,31 @@ const styles = StyleSheet.create({
        height: 50,
        width: 50,
        marginTop: 50,
-       marginLeft: 10,
+       marginLeft: 20,
+       marginRight: 30,
     },
     backBox:{
-        height: '15%',
+        height: '13%',
         width: 'auto',
         position: 'relative',
         width: '100%',
         borderColor: 'grey',
         borderBottomWidth: 1,
-       flex: 0.5,
+        flex: 0.5,
+        backgroundColor: 'white',
+        opacity: 0.9,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingBottom: 5,
     },
+    secondBox:{
+        width: '87%',
+    },  
+    username:{
+        textAlign: 'center',
+        marginRight: 10,
+      }
 });
 
 export default styles;

@@ -81,9 +81,17 @@ export default function StatsModal(props){
     return (
         <Modal visible={props.visible} animationType='slide'>
             <ImageBackground style={styles.backgroundImage} resizeMode="cover" source={require('./../assets/noteBook.png')}>
-                <Pressable style={styles.backBox} onPress={props.cancelPressed}>
+            <View style={styles.backBox}>
+
+                <Pressable style={styles.topIcon} onPress={props.cancelPressed}>
                     <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
                 </Pressable>
+
+                <Pressable style={styles.topIcon} onPress={props.closeTaskOpenSettings}>
+                    <Image style={styles.backIcon} source={require('./../assets/user.png')} />
+                    <Text style={styles.username}>{username}</Text>
+                </Pressable>
+            </View>
                 <Text style={styles.heading}>Statistics</Text>
                 <View style={styles.statsView}>
                     <PieChart

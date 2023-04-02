@@ -8,7 +8,7 @@ import styles from '../styles/CatStyleSheet';
 export default function CategoryModal(props){
 
     const [categoryArray, setCategoryArray] = useState([]);
-
+    const [username, setUsername] = useState('');
     const [categoryEnteredText, setCategoryEnteredText] = useState('');
 
     function addCategoryHandler(text){
@@ -64,15 +64,40 @@ export default function CategoryModal(props){
     loadData();
   }, []);
 
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const storedData = await AsyncStorage.getItem('appData');
+        console.log("Stored data: " + storedData);
+        if (storedData !== null) {
+          console.log(storedData);
+          const data = JSON.parse(storedData);
+          setUsername(data.username);
+        }
+      } catch (error) {
+        console.log(error);
+        console.log("Error");
+      }
+    }
+    loadData();
+  }, []);
+
     
 
     return (
         <Modal visible={props.visible} animationType='slide'>
             <ImageBackground  source={require("../assets/noteBook.png")} resizeMode="cover" style={styles.image}>
                   
-                <Pressable style={styles.backBox} onPress={props.cancelPressed}>
-                    <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
-                </Pressable>
+            <View style={styles.backBox}>
+              <Pressable style={styles.topIcon} onPress={props.cancelPressed}>
+                  <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
+              </Pressable>
+
+              <Pressable style={styles.topIcon} onPress={props.closeTaskOpenSettings}>
+                  <Image style={styles.backIcon} source={require('./../assets/user.png')} />
+                  <Text style={styles.username}>{username}</Text>
+              </Pressable>
+            </View>
 
                 <Text style={styles.heading}>Categories</Text>
 

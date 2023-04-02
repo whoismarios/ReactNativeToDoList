@@ -1,7 +1,8 @@
 import { View, Text, TextInput, ImageBackground, Modal, Pressable, Image } from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NavbarComponent from './NavbarComponent'
 import styles from '../styles/SettingsStyleSheet';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SettingsModal(props) {
 
@@ -18,14 +19,39 @@ export default function SettingsModal(props) {
     }
     setUsername('');
   }
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const storedData = await AsyncStorage.getItem('appData');
+        console.log("Stored data: " + storedData);
+        if (storedData !== null) {
+          console.log(storedData);
+          const data = JSON.parse(storedData);
+          setUsername(data.username);
+        }
+      } catch (error) {
+        console.log(error);
+        console.log("Error");
+      }
+    }
+    loadData();
+  }, []);
   
   return (
     <Modal visible={props.visible} animationType='slide'>
       <ImageBackground  source={require("../assets/noteBook.png")} resizeMode="cover" style={styles.image}>
+        <View style={styles.wholeBox}>
+          <View style={styles.backBox}>
+            <Pressable style={styles.topIcon} onPress={props.cancelPressed}>
+              <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
+            </Pressable>
 
-        <Pressable style={styles.backBox} onPress={props.cancelPressed}>
-          <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
-        </Pressable>
+            <Pressable style={styles.topIcon} onPress={props.closeTaskOpenSettings}>
+              <Image style={styles.backIcon} source={require('./../assets/user.png')} />
+              <Text style={styles.username}>{username}</Text>
+            </Pressable>
+          </View>
 
         <Text style={styles.heading}>Settings</Text>
 
@@ -66,6 +92,7 @@ export default function SettingsModal(props) {
               </Pressable>
             </View>
           </View>
+        </View>
       </ImageBackground>
       <NavbarComponent onCategoryPressed={props.onCloseSettingsOpenCats} onHomePressed={props.onCloseSettingsModal} onStatsPressed={props.closeSettingsOpenStats} onAddTaskPressed={props.onCloseSettingsOpenTask} />
     </Modal>

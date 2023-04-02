@@ -19,13 +19,12 @@ export default function App() {
   const [totalCount, setCount] = useState(0);
   const [doneCount, setDoneCount] = useState(0);
   const [categoryArray, setCategoryArray] = useState([]);
-
+  const [username, setUsername] = useState('');
   const [categoryEnteredText, setCategoryEnteredText] = useState('');
 
   //States for the Modal Visibility
   const [modalIsVisible, setModalIsVisible] = useState(false)
   const [usernameModalVisibility, setUsernameModalVisibility] = useState(true);
-  const [username, setUsername] = useState('');
   const [settingsModalVisible, setSettingsModalVisibility] = useState(false);
   const [statsModalVisible, setStatsModalVisible] = useState(false);
   const [categoryVisible, setCategoryModalVisible] = useState(false);

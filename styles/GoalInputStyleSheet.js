@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     displayView:{
-      height: '85%',
+      height: '87%',
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -91,19 +91,28 @@ const styles = StyleSheet.create({
       backIcon: {
        height: 50,
        width: 50,
-      marginTop: 50,
-      marginLeft: 10,
+       marginTop: 50,
+       marginLeft: 20,
+       marginRight: 30,
       } ,
       //height 100% to make it work or update ui
       backBox:{
-        height: '15%',
+        height: '13%',
         width: 'auto',
         position: 'relative',
         width: '100%',
         borderColor: 'grey',
         borderBottomWidth: 1,
-      
+        backgroundColor: 'white',
+        opacity: 0.9,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
       },
+      username:{
+        textAlign: 'center',
+        marginRight: 10,
+      }
 });
 
 export default styles;

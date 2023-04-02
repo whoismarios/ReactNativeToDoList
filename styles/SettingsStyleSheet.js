@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     body: {
       height: '35%',
-      marginVertical: 20,
+      marginVertical: 300,
       width: '100%',
       backgroundColor: '#fff',
       padding: 20,
@@ -63,19 +63,30 @@ const styles = StyleSheet.create({
     backIcon: {
       height: 50,
       width: 50,
-      marginTop: 20,
-      marginLeft: 10,
-   },
-   backBox:{
-      height: '10%',
-      width: 'auto',
-      position: 'relative',
-      width: '100%',
-      borderColor: 'grey',
-      borderBottomWidth: 1,
-      top: -300,
-      marginBottom: -50
-   },
+      marginTop: 50,
+      marginLeft: 20,
+      marginRight: 30,
+     },
+     backBox:{
+       height: '13%',
+       width: 'auto',
+       position: 'relative',
+       width: '100%',
+       borderColor: 'grey',
+       borderBottomWidth: 1,
+       backgroundColor: 'white',
+       opacity: 0.9,
+       display: 'flex',
+       flexDirection: 'row',
+       justifyContent: 'space-between'
+     },
+     username:{
+       textAlign: 'center',
+       marginRight: 10,
+     },
+     wholeBox:{
+      height: '100%',
+     }
   });
 
 export default styles;

@@ -95,18 +95,29 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         marginTop: 60,
-        marginLeft: 10,
+        marginLeft: 20,
+       marginRight: 30,
      },
      backBox:{
-        height: '15%',
+        height: '14%',
         width: 'auto',
         position: 'relative',
         width: '100%',
         borderColor: 'grey',
         borderBottomWidth: 1,
         top: -275,
-        marginBottom: -50
+        marginBottom: -50,
+        backgroundColor: 'white',
+        opacity: 0.9,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingBottom: 5,
      },
+     username:{
+      textAlign: 'center',
+      marginRight: 10,
+    }
 });
 
 export default styles;
