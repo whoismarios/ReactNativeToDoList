@@ -310,9 +310,6 @@ async function saveData() {
     setCategoryArray([]);
   }
 
-  
-
-
   return (
     <>
       <StatusBar style='dark' />
@@ -330,9 +327,7 @@ async function saveData() {
           <StatsModal onCloseStatsOpenSettings={handleOnCloseCatOpenSettings} cancelPressed={handleOnCancelPressed} closeStatsOpenCat={handleOnCloseStatsOpenCats} visible={statsModalVisible} onCloseStatsOpenTask={handleCloseStatsOpenTask} closeStatsOpenSettings={handleCloseStatsOpenSettings} onHomePressed={setAllModalVisibilityToFalse} />
 
           <CategoryModal onCloseCatOpenSettings2={handleOnCloseCatOpenSettings} deleteCat={handleDeleteCat} cancelPressed={handleOnCancelPressed} setCategory={onSetCategoryHandler} visible={categoryVisible} onCloseCategoryModal={handleOnCloseCategory} onCloseCatOpenStats={handleOnCloseCatOpenStats} onCloseCatOpenTasks={handleOnCloseCatOpenTasks} onCloseCatOpenSettings={handleOnCloseCatOpenSettings} />
-
-
-          
+  
             <FlatList 
               data={courseGoals} 
               renderItem={(itemData) => {
@@ -348,7 +343,6 @@ async function saveData() {
           <NavbarComponent onCategoryPressed={handleOnCategoryPressed} onStatsPressed={setStatsModalVisibleHandler} onAddTaskPressed={startAddGoalHandler} onSettingsPressed={handleOpenSettingsModal}
                            
           />
-
         </ImageBackground>
       </View>
     </>  
