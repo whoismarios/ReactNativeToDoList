@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './NavbarComponent';
 import CategoryItem from './CategoryItem';
-import Carousel from 'react-native-snap-carousel';
 import styles from '../styles/CatStyleSheet';
 
 export default function CategoryModal(props){
@@ -11,6 +10,7 @@ export default function CategoryModal(props){
     const [categoryArray, setCategoryArray] = useState([]);
     const [username, setUsername] = useState('');
     const [categoryEnteredText, setCategoryEnteredText] = useState('');
+    //const [categoryDeleted, setCategoryDeleted] = useState(false);
 
     function addCategoryHandler(text){
       setCategoryEnteredText(text);
@@ -36,16 +36,6 @@ export default function CategoryModal(props){
     useEffect(() => {
     }, [categoryArray]);
 
-    /*
-    function handleDeleteCat(id){
-      setCategoryArray((currentCategories) => {
-        Alert.alert('Deleted!', 'Category is deleted!');
-        //TODO: Add Prop to App Component to update state in localstorage?
-        
-        return currentCategories.filter((category) => category.id !== id);
-      });
-    }*/
-
     // Load data from local storage on app start
   useEffect(() => {
     async function loadData() {
@@ -65,25 +55,27 @@ export default function CategoryModal(props){
     loadData();
   }, []);
 
-  useEffect(() => {
-    async function loadData() {
+  /*
+  function deleteCategoryHandler(categoryId) {
+    setCategoryArray(currentCategories =>
+      currentCategories.filter(category => category.id !== categoryId)
+    );
+    setCategoryDeleted(!categoryDeleted);
+    saveData();
+  }
+
+    async function saveData() {
       try {
-        const storedData = await AsyncStorage.getItem('appData');
-        console.log("Stored data: " + storedData);
-        if (storedData !== null) {
-          console.log(storedData);
-          const data = JSON.parse(storedData);
-          setUsername(data.username);
-        }
+        const data = JSON.stringify({
+          categoryArray,
+        });
+        await AsyncStorage.setItem('category', data);
+        console.log(data);
       } catch (error) {
         console.log(error);
-        console.log("Error");
       }
-    }
-    loadData();
-  }, []);
-
-    
+    }*/
+  
 
     return (
         <Modal visible={props.visible} animationType='slide'>
@@ -115,7 +107,7 @@ export default function CategoryModal(props){
                 <View style={styles.addToDoContainer2}>
                     
                    <FlatList
-                      
+                      //key={categoryDeleted}
                       horizontal={true}
                       style={styles.flatlistScroll}
                       data={categoryArray}
@@ -134,18 +126,4 @@ export default function CategoryModal(props){
             <NavbarComponent onHomePressed={props.onCloseCategoryModal} onStatsPressed={props.onCloseCatOpenStats} onAddTaskPressed={props.onCloseCatOpenTasks} onSettingsPressed={props.onCloseCatOpenSettings}/>
         </Modal>
     );
-    /**
-     * 
-    <Text style={styles.catsHeading}>Current Categories:</Text>
-                   
-<Carousel layout={'default'} 
-                  
-                  renderItem={({ item }) => (
-                    <CarouselItem data={categoryArray} text={item.text} id={item.id} onDeleteCat={props.deleteCat} />
-                  )}
-                  keyExtractor={(item) => item.id}
-                  
-                  />
-    
-     */
 }

@@ -5,8 +5,8 @@ const styles = StyleSheet.create({
     heading:{
       fontSize: 60,
       textAlign: 'center',
-      marginTop: -250,
-      marginBottom: 50,
+      marginTop: 10,
+      marginBottom: -225,
     },
     image: {
       flex: 3,
@@ -16,13 +16,15 @@ const styles = StyleSheet.create({
       opacity: 0.8,
     },
     body: {
-      height: '40%',
+      height: '45%',
       marginVertical: 300,
       width: '100%',
       backgroundColor: '#fff',
       padding: 20,
       borderRadius: 5,
       opacity: 0.9,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     row: {
       flexDirection: 'row',

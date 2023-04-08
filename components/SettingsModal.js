@@ -91,6 +91,13 @@ export default function SettingsModal(props) {
                 <Text style={styles.buttonText}>Reset</Text>
               </Pressable>
             </View>
+
+            <View style={styles.row}>
+              <Text style={styles.label}>Reset All</Text>
+              <Pressable style={styles.button} onPress={props.onResetAll}>
+                <Text style={styles.buttonText}>Reset</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </ImageBackground>

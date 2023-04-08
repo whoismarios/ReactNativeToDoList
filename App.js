@@ -29,7 +29,6 @@ export default function App() {
   const [statsModalVisible, setStatsModalVisible] = useState(false);
   const [categoryVisible, setCategoryModalVisible] = useState(false);
 
-  // Load data from local storage on app start
   useEffect(() => {
     async function loadData() {
       try {
@@ -46,15 +45,8 @@ export default function App() {
         console.log(error);
       }
     }
-    loadData();
-  }, []);
-
-  // Load data from local storage on app start
-  useEffect(() => {
-    loadData();
-  }, []);
   
-    async function loadData() {
+    async function loadCategoryData() {
       try {
         const storedData = await AsyncStorage.getItem('category');
         if (storedData !== null) {
@@ -63,10 +55,13 @@ export default function App() {
         }
       } catch (error) {
         console.log(error);
-        console.log("Error");
       }
     }
-  // Save data to local storage whenever a state variable changes
+  
+    loadData();
+    loadCategoryData();
+  }, []);
+  
   useEffect(() => {
     async function saveData() {
       try {
@@ -83,16 +78,12 @@ export default function App() {
         console.log(error);
       }
     }
+  
     saveData();
   }, [courseGoals, totalCount, doneCount, username, categoryArray]);
-
-  // Save data to local storage whenever a state variable changes
+  
   useEffect(() => {
-    saveData();
-    
-  }, [categoryArray]);
-
-async function saveData() {
+    async function saveData() {
       try {
         const data = JSON.stringify({
           categoryArray,
@@ -103,6 +94,10 @@ async function saveData() {
         console.log(error);
       }
     }
+  
+    saveData();
+  }, [categoryArray]);
+  
     
 
   //Display the Goal/ Task Input Modal
@@ -310,6 +305,18 @@ async function saveData() {
     setCategoryArray([]);
   }
 
+  function handleOnResetAll(){
+    async function clearLocalStorage() {
+      try {
+        await AsyncStorage.clear();
+        console.log('Local storage cleared.');
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    clearLocalStorage();    
+  }
+
   return (
     <>
       <StatusBar style='dark' />
@@ -322,7 +329,7 @@ async function saveData() {
 
           <GoalInput cancelPressed={handleOnCancelPressed} onCloseGoalOpenCat={handleOnCloseGoalOpenCat} closeTaskOpenSettings={handleCloseStatsOpenSettings} closeTaskOpenStats={handleCloseSettingsOpenStats} onCancel={endAddGoalHandler} visible={modalIsVisible} onAddGoal={addGoalHandler}  />
 
-          <SettingsModal onDeleteCategories={handleOnDeleteCategories} cancelPressed={handleOnCancelPressed} onCloseSettingsOpenCats={handleOnCloseSettingsOpenCats} onCloseSettingsOpenTask={handleCloseSettingsOpenTask} closeSettingsOpenStats={handleCloseSettingsOpenStats} onResetUsername={handleOnResetUsername} handleChangeUsername={handleOnChangeUsername} onCloseSettingsModal={handleOnCloseSettingsModal} visible={settingsModalVisible} onResetStats={handleOnResetStats} onDeleteTasks={handleOnDeleteTasks} onChangeUsername={handleOnChangeUsername}/>
+          <SettingsModal onResetAll={handleOnResetAll} onDeleteCategories={handleOnDeleteCategories} cancelPressed={handleOnCancelPressed} onCloseSettingsOpenCats={handleOnCloseSettingsOpenCats} onCloseSettingsOpenTask={handleCloseSettingsOpenTask} closeSettingsOpenStats={handleCloseSettingsOpenStats} onResetUsername={handleOnResetUsername} handleChangeUsername={handleOnChangeUsername} onCloseSettingsModal={handleOnCloseSettingsModal} visible={settingsModalVisible} onResetStats={handleOnResetStats} onDeleteTasks={handleOnDeleteTasks} onChangeUsername={handleOnChangeUsername}/>
 
           <StatsModal onCloseStatsOpenSettings={handleOnCloseCatOpenSettings} cancelPressed={handleOnCancelPressed} closeStatsOpenCat={handleOnCloseStatsOpenCats} visible={statsModalVisible} onCloseStatsOpenTask={handleCloseStatsOpenTask} closeStatsOpenSettings={handleCloseStatsOpenSettings} onHomePressed={setAllModalVisibilityToFalse} />
 
