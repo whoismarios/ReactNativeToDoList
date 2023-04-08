@@ -4,12 +4,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './NavbarComponent';
 import CategoryItem from './CategoryItem';
 import styles from '../styles/CatStyleSheet';
+import {UNSPLASH_ACCESS_KEY} from '@env';
+import axios from 'axios';
 
 export default function CategoryModal(props){
 
     const [categoryArray, setCategoryArray] = useState([]);
     const [username, setUsername] = useState('');
     const [categoryEnteredText, setCategoryEnteredText] = useState('');
+    var searchTerm = "";
     //const [categoryDeleted, setCategoryDeleted] = useState(false);
 
     function addCategoryHandler(text){
@@ -36,7 +39,7 @@ export default function CategoryModal(props){
     useEffect(() => {
     }, [categoryArray]);
 
-    // Load data from local storage on app start
+    // Load categoryArray from local storage on app start
   useEffect(() => {
     async function loadData() {
       try {
@@ -47,6 +50,7 @@ export default function CategoryModal(props){
           const data = JSON.parse(storedData);
           setCategoryArray(data.categoryArray);
           console.log(categoryArray);
+          console.log(UNSPLASH_ACCESS_KEY);
         }
       } catch (error) {
         console.log(error);
@@ -56,7 +60,7 @@ export default function CategoryModal(props){
     loadData();
   }, []);
 
-  // Load data from local storage on app start
+  // Load username from local storage on app start
   useEffect(() => {
     async function loadData() {
       try {
@@ -128,13 +132,16 @@ export default function CategoryModal(props){
                 <View style={styles.addToDoContainer2}>
                     
                    <FlatList
-                      //key={categoryDeleted}
                       horizontal={true}
                       style={styles.flatlistScroll}
                       data={categoryArray}
                       initialNumToRender={categoryArray.length}
                       windowSize={1}
                       renderItem={({ item }) => (
+
+                        
+                        
+
                         <CategoryItem text={item.text} id={item.id} onDeleteCat={props.deleteCat} />
                       )}
                       keyExtractor={(item) => item.id}
