@@ -46,6 +46,7 @@ export default function CategoryModal(props){
           console.log(storedData);
           const data = JSON.parse(storedData);
           setCategoryArray(data.categoryArray);
+          console.log(categoryArray);
         }
       } catch (error) {
         console.log(error);
@@ -54,6 +55,26 @@ export default function CategoryModal(props){
     }
     loadData();
   }, []);
+
+  // Load data from local storage on app start
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const storedData = await AsyncStorage.getItem('appData');
+        console.log("Stored data: " + storedData);
+        if (storedData !== null) {
+          console.log(storedData);
+          const data = JSON.parse(storedData);
+          setUsername(data.username);
+        }
+      } catch (error) {
+        console.log(error);
+        console.log("Error");
+      }
+    }
+    loadData();
+  }, []);
+
 
   /*
   function deleteCategoryHandler(categoryId) {
