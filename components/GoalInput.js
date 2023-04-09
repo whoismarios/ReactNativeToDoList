@@ -5,6 +5,7 @@ import NavbarComponent from "./NavbarComponent";
 import { SelectList } from 'react-native-dropdown-select-list';
 import styles from "../styles/GoalInputStyleSheet";
 import * as Haptics from 'expo-haptics';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function GoalInput(props) {
 
@@ -12,7 +13,18 @@ export default function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [username, setUsername] = useState('');
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  
 
+  function handleDateChange(event, date) {
+    if (date !== undefined) {
+      setSelectedDate(date);
+      console.log(date.toLocaleDateString('en-GB'));
+      console.log(date);
+      
+    }
+  }
+  
   // Load data from local storage on app start
   useEffect(() => {
     async function loadData() {
@@ -61,7 +73,7 @@ useEffect(()=> {
   function addGoalHandler(){
     Haptics.notificationAsync(
       Haptics.NotificationFeedbackType.Success)
-    props.onAddGoal(enteredGoalText, selectedCategory );
+    props.onAddGoal(enteredGoalText, selectedCategory, selectedDate );
     setEnteredGoalText('');
     setSelectedCategory('');
     Keyboard.dismiss();
@@ -103,9 +115,20 @@ useEffect(()=> {
                   data={categoryArray.map(category => ({ label: category.text, value: category.text }))} 
                   save="value"
                   placeholder="Select a category"
-                  language="EN"
+                  
               />
 
+              <Text style={styles.heading2}>Enter the termination date</Text>
+              <View style={styles.dateTimePicker}>
+                <DateTimePicker
+                  value={selectedDate}
+                  mode='date'
+                  is24Hour={true}
+                  display='spinner'
+                  onChange={handleDateChange}
+                  displayFormat={"DD MMM yyyy"}
+                />
+              </View>
 
               <Pressable style={styles.getStartedButton} onPress={addGoalHandler}>
                 <Text style={styles.getStartedButtonText}>Add</Text>

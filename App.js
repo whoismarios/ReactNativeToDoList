@@ -141,12 +141,10 @@ export default function App() {
     setCount(totalCount - 1);
   }
 
-  function addGoalHandler(enteredGoalText, selectedCategory ) {
-    console.log("Identify: " + enteredGoalText);
-    console.log("Identify: " + selectedCategory);
+  function addGoalHandler(enteredGoalText, selectedCategory, selectedDate ) {
     setCourseGoals((currentCourseGoals) => [
       ...(currentCourseGoals ?? []),
-      { text: enteredGoalText, category: selectedCategory, id: Math.random().toString() },
+      { text: enteredGoalText, category: selectedCategory, terminationDate: selectedDate, id: Math.random().toString() },
     ]);
     setTotalTasksPlusOne();
     setModalIsVisible(false);
@@ -338,7 +336,7 @@ export default function App() {
       <StatusBar style='dark' />
       <View style={styles.container}>
         <ImageBackground source={require("./assets/noteBook.png")} resizeMode="cover" style={styles.image} >
-          <Text style={styles.greeting}>Hallo {username}!</Text>
+          <Text style={styles.greeting}>Hey, {username}!</Text>
           
 
           <WelcomeScreenModal onSave={handleSaveUsername} visible={usernameModalVisibility} />
@@ -350,12 +348,22 @@ export default function App() {
           <StatsModal onCloseStatsOpenSettings={handleOnCloseCatOpenSettings} cancelPressed={handleOnCancelPressed} closeStatsOpenCat={handleOnCloseStatsOpenCats} visible={statsModalVisible} onCloseStatsOpenTask={handleCloseStatsOpenTask} closeStatsOpenSettings={handleCloseStatsOpenSettings} onHomePressed={setAllModalVisibilityToFalse} />
 
           <CategoryModal onCloseCatOpenSettings2={handleOnCloseCatOpenSettings} deleteCat={handleDeleteCat} cancelPressed={handleOnCancelPressed} setCategory={onSetCategoryHandler} visible={categoryVisible} onCloseCategoryModal={handleOnCloseCategory} onCloseCatOpenStats={handleOnCloseCatOpenStats} onCloseCatOpenTasks={handleOnCloseCatOpenTasks} onCloseCatOpenSettings={handleOnCloseCatOpenSettings} />
-  
+
+          <View style={styles.legende}>
+            <Text style={styles.legendeText}>Task</Text>
+            <Text style={styles.legendeText}>Category</Text>
+            <Text style={styles.legendeText}>End Date</Text>
+            <Text style={styles.legendeText}>Action</Text>
+          </View>
+
             <FlatList 
               data={courseGoals} 
               renderItem={(itemData) => {
+
+                
+                
                 return (
-                  <GoalItem id={itemData.item.id} onDoneItem={doneGoalHandler} onDeleteItem={deleteGoalHandler} text={itemData.item.text} category={itemData.item.category} />
+                  <GoalItem terminationDate={itemData.item.terminationDate} id={itemData.item.id} onDoneItem={doneGoalHandler} onDeleteItem={deleteGoalHandler} text={itemData.item.text} category={itemData.item.category} />
                 );
               }} 
               keyExtractor = {(item, index) => { 

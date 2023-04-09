@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: 'rgba(255,255,255,0.9)',
         padding: 5,
-        marginVertical:75,
+        marginVertical:25,
       },
       taskInputField: {
         width: '90%',
-        height: '20%',
+        height: '7.5%',
         marginLeft: 'auto',
         marginRight: 'auto',
         borderWidth: 1,
@@ -54,12 +54,25 @@ const styles = StyleSheet.create({
       heading: {
         backgroundColor: 'transparent',
         padding: 5,
-        fontSize: 24,
+        fontSize: 30,
         fontFamily: 'Arial',
         fontWeight: 'bold',
         color: 'black',
         textAlign: 'center',
-        width: '60%',
+        width: '80%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: 20,
+      },
+      heading2: {
+        backgroundColor: 'transparent',
+        padding: 5,
+        fontSize: 20,
+        fontFamily: 'Arial',
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
+        width: '70%',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: 20,
@@ -112,7 +125,15 @@ const styles = StyleSheet.create({
       username:{
         textAlign: 'center',
         marginRight: 10,
-      }
+      },
+      dateTimePicker:{
+        width: '90%',
+        marginLeft: '5%',
+        textAlign: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: 15,
+      },
 });
 
 export default styles;

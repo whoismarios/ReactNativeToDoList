@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Arial',
         color: 'black',
         width: '30%',
+        height: 'auto',
       },
       singleTaskContainer: {
         borderWidth: 2,
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
         padding: 5,
         marginTop: 15,
         alignItems: 'center',
+        height: 75,
       },
       doneButton:{
         width: 60,
@@ -32,6 +34,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 3,
         opacity: 0.9,
+        margin: 5,
       },
       deleteButton:{
         width: 60,
@@ -45,11 +48,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 3,
         opacity: 0.9,
+        margin: 5,
       },
       buttonBox: {
-        width: '40%',
+        width: '20%',
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-evenly',
       }
 });

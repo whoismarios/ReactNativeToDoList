@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { View, Text } from "react-native";
 import styles from "../styles/GoalItemStyleSheet";
 
 export default function GoalItem (props){
@@ -7,6 +7,7 @@ export default function GoalItem (props){
         <View style={styles.singleTaskContainer}>
             <Text style={styles.task2}>{props.text}</Text>
             <Text style={styles.task2}>{props.category}</Text>
+            <Text style={styles.task2}>{new Date(props.terminationDate).toLocaleDateString('en-GB')}</Text>
             <View style={styles.buttonBox}>
                 <Text style={styles.doneButton} title='Done' onPress={props.onDoneItem.bind(this, props.id)}>Done</Text>
                 <Text style={styles.deleteButton} title='Delete' onPress={props.onDeleteItem.bind(this, props.id)} >Delete</Text>

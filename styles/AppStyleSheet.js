@@ -35,6 +35,16 @@ const styles = StyleSheet.create({
       marginTop: 60,
       marginBottom: 20,
     },
+    legende:{
+      display: 'flex',
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'space-evenly',
+    },
+    legendeText:{
+      textAlign: 'center',
+      width: '25%',
+    },
   });
 
 export default styles;
