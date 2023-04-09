@@ -1,5 +1,5 @@
 import { View, ImageBackground, FlatList, Alert, Text } from 'react-native';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import WelcomeScreenModal from './components/WelcomeScreenModal';
 import GoalInput from './components/GoalInput';
@@ -10,7 +10,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavbarComponent from './components/NavbarComponent';
 import CategoryModal from './components/CategoryModal';
 import styles from './styles/AppStyleSheet';
-import * as Haptics from 'expo-haptics';
+import * as Haptics from 'expo-haptics';  
+import * as Notifications from 'expo-notifications';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function App() {
   
@@ -21,6 +30,13 @@ export default function App() {
   const [categoryArray, setCategoryArray] = useState([]);
   const [username, setUsername] = useState('');
   const [categoryEnteredText, setCategoryEnteredText] = useState('');
+  
+  //Notifications
+  const NOTIFICATION_KEY = 'todo-list-notification';
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
 
   //States for the Modal Visibility
   const [modalIsVisible, setModalIsVisible] = useState(false)
