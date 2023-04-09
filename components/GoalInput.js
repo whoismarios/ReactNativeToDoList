@@ -139,6 +139,7 @@ useEffect(()=> {
                   data={categoryArray.map(category => ({ label: category.text, value: category.text }))} 
                   save="value"
                   placeholder="Select a category"
+                  style={styles.selectList}
                   
               />
 

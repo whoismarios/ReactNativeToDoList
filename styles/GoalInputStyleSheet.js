@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'black',
         textAlign: 'center',
-        width: '70%',
+        width: '90%',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: 20,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         backgroundColor: 'black',
         borderColor: 'black',
-        marginTop: 30,
+        marginTop: 10,
         marginLeft: 'auto',
         marginRight: 'auto',
       },
@@ -132,12 +132,15 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         display: 'flex',
         alignItems: 'center',
-        marginTop: 15,
+        marginTop: 5,
       },
       todolistTopLogo:{
         width: 125,
         height:'auto',
         marginTop: 50,
+    },
+    selectList:{
+      
     },
 });
 
