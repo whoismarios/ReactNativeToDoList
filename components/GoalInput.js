@@ -97,6 +97,8 @@ useEffect(()=> {
               <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
             </Pressable>
 
+            <Image style={styles.todolistTopLogo} source={require('../assets/todolistTopLogo.jpg')} />
+
             <Pressable style={styles.topIcon} onPress={props.closeTaskOpenSettings}>
               <Image style={styles.backIcon} source={require('./../assets/user.png')} />
               <Text style={styles.username}>{username}</Text>

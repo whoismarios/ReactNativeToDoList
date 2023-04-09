@@ -88,7 +88,12 @@ const styles = StyleSheet.create({
      },
      wholeBox:{
       height: '100%',
-     }
+     },
+     todolistTopLogo:{
+      width: 125,
+      height:'auto',
+      marginTop: 50,
+  },
   });
 
 export default styles;

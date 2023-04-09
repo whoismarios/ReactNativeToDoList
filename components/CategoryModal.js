@@ -108,6 +108,8 @@ export default function CategoryModal(props){
             <Pressable style={styles.topIcon} onPress={props.cancelPressed}>
                 <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
             </Pressable>
+
+            <Image style={styles.todolistTopLogo} source={require('../assets/todolistTopLogo.jpg')} />
   
             <Pressable style={styles.topIcon} onPress={props.onCloseCatOpenSettings2}>
                 <Image style={styles.backIcon} source={require('./../assets/user.png')} />

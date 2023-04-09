@@ -72,7 +72,12 @@ const styles = StyleSheet.create({
     username:{
         textAlign: 'center',
         marginRight: 10,
-      }
+    },
+    todolistTopLogo:{
+        width: 125,
+        height:'auto',
+        marginTop: 50,
+    },
 });
 
 export default styles;

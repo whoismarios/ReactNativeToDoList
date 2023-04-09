@@ -134,6 +134,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 15,
       },
+      todolistTopLogo:{
+        width: 125,
+        height:'auto',
+        marginTop: 50,
+    },
 });
 
 export default styles;

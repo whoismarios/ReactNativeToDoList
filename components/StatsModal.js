@@ -87,6 +87,8 @@ export default function StatsModal(props){
                     <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
                 </Pressable>
 
+                <Image style={styles.todolistTopLogo} source={require('../assets/todolistTopLogo.jpg')} />
+
                 <Pressable style={styles.topIcon} onPress={props.onCloseStatsOpenSettings}>
                     <Image style={styles.backIcon} source={require('./../assets/user.png')} />
                     <Text style={styles.username}>{username}</Text>
