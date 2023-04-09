@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     legende:{
       display: 'flex',
       flexDirection: 'row',
-      width: '100%',
+      width: '90%',
+      marginLeft: '5%',
       justifyContent: 'space-evenly',
     },
     legendeText:{
