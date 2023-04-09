@@ -9,37 +9,60 @@ import axios from 'axios';
 
 export default function CategoryModal(props){
 
-    const [categoryArray, setCategoryArray] = useState([]);
-    const [username, setUsername] = useState('');
-    const [categoryEnteredText, setCategoryEnteredText] = useState('');
-    var searchTerm = "";
-    //const [categoryDeleted, setCategoryDeleted] = useState(false);
+  const [categoryArray, setCategoryArray] = useState([]);
+  const [username, setUsername] = useState('');
+  const [categoryEnteredText, setCategoryEnteredText] = useState('');
+  var searchTerm = "";
 
-    function addCategoryHandler(text){
-      setCategoryEnteredText(text);
-    }
+  const [photoUrls, setPhotoUrls] = useState([]);
 
-    function addCatHandler(){
-      props.setCategory(categoryEnteredText);
-      setCategoryEnteredText('');
-      addCategory();
-      Keyboard.dismiss();
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      
+      var newPhotoUrls = [];
+      for (const category of categoryArray) {
+        const searchTerm = category.text;
+        const response = await axios.get(`https://api.unsplash.com/search/photos?query=${searchTerm}&client_id=${UNSPLASH_ACCESS_KEY}`);
+        const photos = response.data.results;
+        const firstPhoto = photos.shift();
+        const photoUrl = firstPhoto.urls.regular;
+        newPhotoUrls.push(photoUrl.toString());
+        //newPhotoUrls[String(category.id)] = photoUrl.toString();
 
-    function addCategory () {
-      if (categoryEnteredText === '') return;
-      setCategoryArray((currentCategories) => [
-        ...currentCategories, 
-        {text: categoryEnteredText, id: Math.random().toString()}
-      ]);
-      setCategoryEnteredText('');
-      console.log(categoryArray);
-    }
+        console.log("URL: " + photoUrl);
+        console.log("The array: " + newPhotoUrls);
+       
+      }
+      setPhotoUrls(newPhotoUrls);
+       console.log("The State Array: " + photoUrls);
+    };
+    fetchData();
+  }, [categoryArray]);
 
-    useEffect(() => {
-    }, [categoryArray]);
+  function addCategoryHandler(text){
+    setCategoryEnteredText(text);
+  }
 
-    // Load categoryArray from local storage on app start
+  function addCatHandler(){
+    props.setCategory(categoryEnteredText);
+    setCategoryEnteredText('');
+    addCategory();
+    Keyboard.dismiss();
+  }
+
+  function addCategory () {
+    if (categoryEnteredText === '') return;
+    setCategoryArray((currentCategories) => [
+      ...currentCategories, 
+      {text: categoryEnteredText, id: Math.random().toString()}
+    ]);
+    setCategoryEnteredText('');
+    console.log(categoryArray);
+  }
+
+  useEffect(() => {
+  }, [categoryArray]);
+
   useEffect(() => {
     async function loadData() {
       try {
@@ -50,7 +73,6 @@ export default function CategoryModal(props){
           const data = JSON.parse(storedData);
           setCategoryArray(data.categoryArray);
           console.log(categoryArray);
-          console.log(UNSPLASH_ACCESS_KEY);
         }
       } catch (error) {
         console.log(error);
@@ -60,7 +82,6 @@ export default function CategoryModal(props){
     loadData();
   }, []);
 
-  // Load username from local storage on app start
   useEffect(() => {
     async function loadData() {
       try {
@@ -78,80 +99,53 @@ export default function CategoryModal(props){
     }
     loadData();
   }, []);
-
-
-  /*
-  function deleteCategoryHandler(categoryId) {
-    setCategoryArray(currentCategories =>
-      currentCategories.filter(category => category.id !== categoryId)
-    );
-    setCategoryDeleted(!categoryDeleted);
-    saveData();
-  }
-
-    async function saveData() {
-      try {
-        const data = JSON.stringify({
-          categoryArray,
-        });
-        await AsyncStorage.setItem('category', data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }*/
   
-
     return (
-        <Modal visible={props.visible} animationType='slide'>
-            <ImageBackground  source={require("../assets/noteBook.png")} resizeMode="cover" style={styles.image}>
+      <Modal visible={props.visible} animationType='slide'>
+          <ImageBackground  source={require("../assets/noteBook.png")} resizeMode="cover" style={styles.image}>
+                
+          <View style={styles.backBox}>
+            <Pressable style={styles.topIcon} onPress={props.cancelPressed}>
+                <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
+            </Pressable>
+  
+            <Pressable style={styles.topIcon} onPress={props.onCloseCatOpenSettings2}>
+                <Image style={styles.backIcon} source={require('./../assets/user.png')} />
+                <Text style={styles.username}>{username}</Text>
+            </Pressable>
+          </View>
+  
+              <Text style={styles.heading}>Categories</Text>
+  
+              <View style={styles.addToDoContainer}>
+              
+                <TextInput onSubmitEditing={Keyboard.dismiss} value={categoryEnteredText} onChangeText={addCategoryHandler} style={styles.taskInputField} placeholder='Add a new Category' />
+              
+                  <Pressable onPress={addCatHandler} style={styles.getStartedButton}>
+                    <Text style={styles.getStartedButtonText}>Add</Text>
+                  </Pressable>
+  
+              </View>
+  
+              <View style={styles.addToDoContainer2}>
                   
-            <View style={styles.backBox}>
-              <Pressable style={styles.topIcon} onPress={props.cancelPressed}>
-                  <Image style={styles.backIcon} source={require('./../assets/zuruck.png')} />
-              </Pressable>
-
-              <Pressable style={styles.topIcon} onPress={props.onCloseCatOpenSettings2}>
-                  <Image style={styles.backIcon} source={require('./../assets/user.png')} />
-                  <Text style={styles.username}>{username}</Text>
-              </Pressable>
-            </View>
-
-                <Text style={styles.heading}>Categories</Text>
-
-                <View style={styles.addToDoContainer}>
-                
-                  <TextInput onSubmitEditing={Keyboard.dismiss} value={categoryEnteredText} onChangeText={addCategoryHandler} style={styles.taskInputField} placeholder='Add a new Category' />
-                
-                    <Pressable onPress={addCatHandler} style={styles.getStartedButton}>
-                      <Text style={styles.getStartedButtonText}>Add</Text>
-                    </Pressable>
-
-                </View>
-
-                <View style={styles.addToDoContainer2}>
+                <FlatList
+                  horizontal={true}
+                  style={{ paddingVertical: 10 }}
+                  data={categoryArray}
+                  
+                  renderItem={({ item, index }) => (
                     
-                   <FlatList
-                      horizontal={true}
-                      style={styles.flatlistScroll}
-                      data={categoryArray}
-                      initialNumToRender={categoryArray.length}
-                      windowSize={1}
-                      renderItem={({ item }) => (
+                    <CategoryItem photoUrl={photoUrls[index]} text={item.text} id={item.id} onDeleteCat={props.deleteCat} />
 
-                        
-                        
-
-                        <CategoryItem text={item.text} id={item.id} onDeleteCat={props.deleteCat} />
-                      )}
-                      keyExtractor={(item) => item.id}
-                    />
-
-                </View>
-
-
-            </ImageBackground>
-            <NavbarComponent onHomePressed={props.onCloseCategoryModal} onStatsPressed={props.onCloseCatOpenStats} onAddTaskPressed={props.onCloseCatOpenTasks} onSettingsPressed={props.onCloseCatOpenSettings}/>
-        </Modal>
-    );
+                  )}
+                  keyExtractor={(item) => item.id}
+                />
+  
+              </View>
+          </ImageBackground>
+          <NavbarComponent onHomePressed={props.onCloseCategoryModal} onStatsPressed={props.onCloseCatOpenStats} onAddTaskPressed={props.onCloseCatOpenTasks} onSettingsPressed={props.onCloseCatOpenSettings}/>
+      </Modal>
+  );
+  
 }
