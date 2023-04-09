@@ -6,6 +6,7 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import styles from "../styles/GoalInputStyleSheet";
 import * as Haptics from 'expo-haptics';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { scheduleNotificationAsync } from 'expo-notifications';
 
 export default function GoalInput(props) {
 
@@ -77,6 +78,27 @@ useEffect(()=> {
     setEnteredGoalText('');
     setSelectedCategory('');
     Keyboard.dismiss();
+
+    try{
+      const schedulingOptions = {
+      content: {
+        title: 'Task Reminder',
+        body: `You have a task due today!`,
+      },
+      trigger: {
+        //date: new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), 8),
+        seconds: 5, //5 Second Tests are working!! TODO: Improve scedule time. Maybe a new input field?!
+      },
+    };
+    scheduleNotificationAsync(schedulingOptions);
+
+    console.log(schedulingOptions);
+    }catch(error){
+      console.error(error);
+      return error;
+    }
+
+    
   }
 
   function handleCategorySelect(val) {
