@@ -15,25 +15,29 @@ export default function GoalInput(props) {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [username, setUsername] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedNotificationTime, setSelectedNotificationTime] = useState(new Date());
   
 
   function handleDateChange(event, date) {
     if (date !== undefined) {
       setSelectedDate(date);
-      console.log(date.toLocaleDateString('en-GB'));
-      console.log(date);
-      
     }
   }
+
+  function handleTimeChange(event, time){
+    if(time !== undefined){  
+      setSelectedNotificationTime(time);
+    }
+    console.log("State time: " + selectedNotificationTime);
+  }
+  
   
   // Load data from local storage on app start
   useEffect(() => {
     async function loadData() {
         try {
             const storedData = await AsyncStorage.getItem('category');
-            console.log("Stored data displayed from TaskModal: " + storedData);
             if(storedData !== null) {
-              console.log(storedData);
               const data = JSON.parse(storedData);
               setCategoryArray(data.categoryArray);
             }
@@ -49,12 +53,9 @@ export default function GoalInput(props) {
   async function loadData() {
       try {
           const storedData = await AsyncStorage.getItem('appData');
-          console.log("Stored data displayed from TaskModal2: " + storedData);
           if(storedData !== null) {
-            console.log(storedData);
             const data = JSON.parse(storedData);
             setUsername(data.username);
-            console.log(data.username);
           }
       } catch (error) {
           console.log(error);
@@ -65,7 +66,7 @@ export default function GoalInput(props) {
 
 useEffect(()=> {
   
-}, [categoryArray]);
+}, [categoryArray, categoryArray]);
 
   function goalInputHandler (enteredText){
     setEnteredGoalText(enteredText);
@@ -74,41 +75,37 @@ useEffect(()=> {
   function addGoalHandler(){
     Haptics.notificationAsync(
       Haptics.NotificationFeedbackType.Success)
-    props.onAddGoal(enteredGoalText, selectedCategory, selectedDate );
+    props.onAddGoal(enteredGoalText, selectedCategory, selectedDate, selectedNotificationTime );
     setEnteredGoalText('');
     setSelectedCategory('');
     Keyboard.dismiss();
-
+  
     try{
       const schedulingOptions = {
-      content: {
-        title: 'Task Reminder',
-        body: `You have a task due today!`,
-      },
-      trigger: {
-        //date: new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), 8),
-        seconds: 5, //5 Second Tests are working!! TODO: Improve scedule time. Maybe a new input field?!
-      },
-    };
-    scheduleNotificationAsync(schedulingOptions);
-
-    console.log(schedulingOptions);
-    }catch(error){
+        content: {
+          title: 'Task Reminder',
+          body: 'The task ' + enteredGoalText + ' has to be done!',
+        },
+        trigger: {
+          date: new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), selectedNotificationTime.getHours(), selectedNotificationTime.getMinutes()),
+          //seconds: 5, //5 Second Tests are working!! TODO: Improve scedule time. Maybe a new input field?!
+        },
+      };
+      scheduleNotificationAsync(schedulingOptions);
+  
+      console.log(schedulingOptions);
+    } catch(error){
       console.error(error);
       return error;
-    }
-
-    
+    }   
   }
+  
 
   function handleCategorySelect(val) {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
     setSelectedCategory(val);
     return val.value;
   }
-  
-  
-  
 
   return (
       <Modal visible={props.visible} animationType='slide'>
@@ -139,8 +136,7 @@ useEffect(()=> {
                   data={categoryArray.map(category => ({ label: category.text, value: category.text }))} 
                   save="value"
                   placeholder="Select a category"
-                  style={styles.selectList}
-                  
+                  style={styles.selectList}   
               />
 
               <Text style={styles.heading2}>Enter the termination date</Text>
@@ -152,6 +148,13 @@ useEffect(()=> {
                   display='spinner'
                   onChange={handleDateChange}
                   displayFormat={"DD MMM yyyy"}
+                />
+                <Text>Select your notification time</Text>
+                <DateTimePicker 
+                  value={selectedNotificationTime}
+                  mode='time'
+                  is24Hour={false}
+                  onChange={handleTimeChange}
                 />
               </View>
 

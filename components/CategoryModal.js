@@ -27,14 +27,8 @@ export default function CategoryModal(props){
         const firstPhoto = photos.shift();
         const photoUrl = firstPhoto.urls.regular;
         newPhotoUrls.push(photoUrl.toString());
-        //newPhotoUrls[String(category.id)] = photoUrl.toString();
-
-        console.log("URL: " + photoUrl);
-        console.log("The array: " + newPhotoUrls);
-       
       }
       setPhotoUrls(newPhotoUrls);
-       console.log("The State Array: " + photoUrls);
     };
     fetchData();
   }, [categoryArray]);
@@ -57,7 +51,6 @@ export default function CategoryModal(props){
       {text: categoryEnteredText, id: Math.random().toString()}
     ]);
     setCategoryEnteredText('');
-    console.log(categoryArray);
   }
 
   useEffect(() => {
@@ -67,16 +60,12 @@ export default function CategoryModal(props){
     async function loadData() {
       try {
         const storedData = await AsyncStorage.getItem('category');
-        console.log("Stored data: " + storedData);
         if (storedData !== null) {
-          console.log(storedData);
           const data = JSON.parse(storedData);
           setCategoryArray(data.categoryArray);
-          console.log(categoryArray);
         }
       } catch (error) {
         console.log(error);
-        console.log("Error");
       }
     }
     loadData();
@@ -86,7 +75,6 @@ export default function CategoryModal(props){
     async function loadData() {
       try {
         const storedData = await AsyncStorage.getItem('appData');
-        console.log("Stored data: " + storedData);
         if (storedData !== null) {
           console.log(storedData);
           const data = JSON.parse(storedData);

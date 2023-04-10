@@ -1,5 +1,5 @@
 import { View, ImageBackground, FlatList, Alert, Text } from 'react-native';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import WelcomeScreenModal from './components/WelcomeScreenModal';
 import GoalInput from './components/GoalInput';
@@ -35,8 +35,6 @@ export default function App() {
   const NOTIFICATION_KEY = 'todo-list-notification';
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
-  const notificationListener = useRef();
-  const responseListener = useRef();
 
   //States for the Modal Visibility
   const [modalIsVisible, setModalIsVisible] = useState(false)
@@ -89,7 +87,6 @@ export default function App() {
           categoryArray
         });
         await AsyncStorage.setItem('appData', data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -105,7 +102,6 @@ export default function App() {
           categoryArray,
         });
         await AsyncStorage.setItem('category', data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -141,10 +137,10 @@ export default function App() {
     setCount(totalCount - 1);
   }
 
-  function addGoalHandler(enteredGoalText, selectedCategory, selectedDate ) {
+  function addGoalHandler(enteredGoalText, selectedCategory, selectedDate, selectedNotificationTime ) {
     setCourseGoals((currentCourseGoals) => [
       ...(currentCourseGoals ?? []),
-      { text: enteredGoalText, category: selectedCategory, terminationDate: selectedDate, id: Math.random().toString() },
+      { text: enteredGoalText, category: selectedCategory, terminationDate: selectedDate, notificationTime: selectedNotificationTime, id: Math.random().toString() },
     ]);
     setTotalTasksPlusOne();
     setModalIsVisible(false);

@@ -10,7 +10,6 @@ export default function StatsModal(props){
     const [totalCount, setCount] = useState(0);
     const [doneCount, setDoneCount] = useState(0);
     const [username, setUsername] = useState('');
-
     const [pieChartData, setPieChartData] = useState([]);
 
 
@@ -21,8 +20,8 @@ export default function StatsModal(props){
                 const storedData = await AsyncStorage.getItem('appData');
                 if (storedData !== null) {
                     const data = JSON.parse(storedData);
-                    setCount(data.totalCount);
-                    setDoneCount(data.doneCount);
+                    setCount(data.totalCount.toFixed(2));
+                    setDoneCount(data.doneCount.toFixed(2));
                     setUsername(data.username);
                 }
             } catch (error) {
@@ -77,7 +76,6 @@ export default function StatsModal(props){
         loadData();
     }
     
-
     return (
         <Modal visible={props.visible} animationType='slide'>
             <ImageBackground style={styles.backgroundImage} resizeMode="cover" source={require('./../assets/noteBook.png')}>
@@ -108,7 +106,6 @@ export default function StatsModal(props){
                         backgroundColor="transparent"
                         absolute
                         style={styles.pieChart}
-                        
                     />
                 </View>
                 <View style={styles.statsTextContainer}>
