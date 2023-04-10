@@ -46,7 +46,7 @@ export default function GoalInput(props) {
         }
     }
     loadData();
-}, []);
+});
 
  // Load data from local storage on app start
  useEffect(() => {
@@ -88,7 +88,6 @@ useEffect(()=> {
         },
         trigger: {
           date: new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), selectedNotificationTime.getHours(), selectedNotificationTime.getMinutes()),
-          //seconds: 5, //5 Second Tests are working!! TODO: Improve scedule time. Maybe a new input field?!
         },
       };
       scheduleNotificationAsync(schedulingOptions);
@@ -153,7 +152,7 @@ useEffect(()=> {
                 <DateTimePicker 
                   value={selectedNotificationTime}
                   mode='time'
-                  is24Hour={false}
+                  is24Hour={true}
                   onChange={handleTimeChange}
                 />
               </View>

@@ -54,9 +54,6 @@ export default function CategoryModal(props){
   }
 
   useEffect(() => {
-  }, [categoryArray]);
-
-  useEffect(() => {
     async function loadData() {
       try {
         const storedData = await AsyncStorage.getItem('category');
@@ -69,7 +66,7 @@ export default function CategoryModal(props){
       }
     }
     loadData();
-  }, []);
+  }, [categoryArray]);
 
   useEffect(() => {
     async function loadData() {

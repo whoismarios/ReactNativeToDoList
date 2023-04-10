@@ -354,10 +354,7 @@ export default function App() {
 
             <FlatList 
               data={courseGoals} 
-              renderItem={(itemData) => {
-
-                
-                
+              renderItem={(itemData) => {   
                 return (
                   <GoalItem terminationDate={itemData.item.terminationDate} id={itemData.item.id} onDoneItem={doneGoalHandler} onDeleteItem={deleteGoalHandler} text={itemData.item.text} category={itemData.item.category} />
                 );
