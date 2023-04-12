@@ -29,6 +29,11 @@ And finally run the npm-script
 npm start
 ```
 
+You can also run the Application on a real Device using the Expo Go App.
+Just run the following script:
+```bash
+npm run mobile
+```
 
 
 ### The Project covers a couple of Basics:
