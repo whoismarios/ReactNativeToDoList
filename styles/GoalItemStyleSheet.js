@@ -22,40 +22,37 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 75,
       },
-      doneButton:{
-        width: 60,
-        textAlign: 'center',
-        height: 'auto',
-        fontSize: 16,
-        backgroundColor: '#aaf683',
-        overflow: 'hidden',
-        borderWidth: 1,
-        borderColor: 'black',
-        borderRadius: 10,
-        padding: 3,
-        opacity: 0.9,
-        margin: 5,
+      leftAction:{
+        backgroundColor: '#388e3c',
+        justifyContent: 'center',
+        flex: 1,
+        height: '85%',
+        marginTop: '4%',
       },
-      deleteButton:{
-        width: 60,
-        textAlign: 'center',
-        height: 'auto',
-        fontSize: 16,
-        backgroundColor: '#ee6055',
-        overflow: 'hidden',
-        borderWidth: 1,
-        borderColor: 'black',
-        borderRadius: 10,
-        padding: 3,
-        opacity: 0.9,
-        margin: 5,
+      leftText:{
+        color: 'white',
+        fontWeight: 600,
+        fontSize: 25,
+        paddingLeft:10,
       },
-      buttonBox: {
-        width: '20%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-evenly',
-      }
+      rightAction:{
+        borderRadius: 10,
+        backgroundColor: '#dd2c00',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        height: '85%',
+        marginTop: '20%',
+      },
+      rightText:{
+        textAlign: 'center',
+        color: 'white',
+        fontWeight: 600,
+        fontSize: 25,
+      },
+      rightActionPressable:{
+        
+        
+      },
 });
 
 export default styles;

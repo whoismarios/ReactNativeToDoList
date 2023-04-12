@@ -327,6 +327,10 @@ export default function App() {
     clearLocalStorage();    
   }
 
+  function handleOnSwipeFromLeft(){
+    Alert.alert("Great!", "This task is done!");
+  }
+
   return (
     <>
       <StatusBar style='dark' />
@@ -349,14 +353,13 @@ export default function App() {
             <Text style={styles.legendeText}>Task</Text>
             <Text style={styles.legendeText}>Category</Text>
             <Text style={styles.legendeText}>End Date</Text>
-            <Text style={styles.legendeText}>Action</Text>
           </View>
 
             <FlatList 
               data={courseGoals} 
               renderItem={(itemData) => {   
                 return (
-                  <GoalItem terminationDate={itemData.item.terminationDate} id={itemData.item.id} onDoneItem={doneGoalHandler} onDeleteItem={deleteGoalHandler} text={itemData.item.text} category={itemData.item.category} />
+                  <GoalItem onSwipeFromLeft={handleOnSwipeFromLeft} terminationDate={itemData.item.terminationDate} id={itemData.item.id} onDoneItem={doneGoalHandler} onDeleteItem={deleteGoalHandler} text={itemData.item.text} category={itemData.item.category} />
                 );
               }} 
               keyExtractor = {(item, index) => { 

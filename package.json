@@ -29,7 +29,8 @@
     "react-native-dropdown-select-list": "^2.0.4",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-sweet-alert": "^3.5.0",
-    "react-native-web": "^0.18.12"
+    "react-native-web": "^0.18.12",
+    "react-native-gesture-handler": "~2.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
