@@ -21,12 +21,18 @@ export default function CategoryModal(props){
       
       var newPhotoUrls = [];
       for (const category of categoryArray) {
-        const searchTerm = category.text;
-        const response = await axios.get(`https://api.unsplash.com/search/photos?query=${searchTerm}&client_id=${UNSPLASH_ACCESS_KEY}`);
-        const photos = response.data.results;
-        const firstPhoto = photos.shift();
-        const photoUrl = firstPhoto.urls.regular;
-        newPhotoUrls.push(photoUrl.toString());
+        try{
+          const searchTerm = category.text;
+          const response = await axios.get(`https://api.unsplash.com/search/photos?query=${searchTerm}&client_id=${UNSPLASH_ACCESS_KEY}`);
+          const photos = response.data.results;
+          const firstPhoto = photos.shift();
+          const photoUrl = firstPhoto.urls.regular;
+          newPhotoUrls.push(photoUrl.toString());
+        }catch(error){
+          console.error(error);
+          newPhotoUrls.push('../assets/noteBook.png');
+        }
+       
       }
       setPhotoUrls(newPhotoUrls);
     };
