@@ -46,7 +46,8 @@ npm run mobile
 - React-Native-Haptics (expo-haptics)
 - React-Native-Datetimepicker
 - React-Native Notifications
-- Unsplash API
+- Unsplash API (HTTP-Request)
+- React-Native-Swipeable
 
 --- 
 
