@@ -89,6 +89,7 @@ npm run mobile
 
 ### What's next?
 - Clean up Code
+- Testing
 - Detailed Documentation and README.md file
 
 
