@@ -18,7 +18,7 @@ cd ToDoList/
 
 Create a .env file inside the root folder.
 Add your Unsplash API Key
-´´´bash
+```bash
 UNSPLASH_ACCESS_KEY=your-key-here
 ```
 
