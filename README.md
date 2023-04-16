@@ -59,25 +59,30 @@ npm run mobile
 
 #### Home
 
-![Bildschirm­foto 2023-03-23 um 14 08 59](https://user-images.githubusercontent.com/103110817/227215489-7d1c3b77-a4b9-46d2-bf2b-1403a44f0c61.png)
+![Main](https://user-images.githubusercontent.com/103110817/232329805-83f715ca-e793-4eb3-8fc5-8f36877ddeb3.jpg)
 
 
-#### Add Task and Category Modal
 
-![Bildschirmfoto 2023-04-02 um 22 54 47](https://user-images.githubusercontent.com/103110817/229378574-93271576-4c5a-43fe-b06d-e2da0a43ef58.png)
+#### Add Task Modal
+
+
+![addTask](https://user-images.githubusercontent.com/103110817/232329831-7da94c5d-3e6e-4b71-a8ab-62060d2e4163.png)
 
 
 #### Statistic Modal
 
-![Bildschirmfoto 2023-04-02 um 22 52 58](https://user-images.githubusercontent.com/103110817/229378488-0459d55c-a04c-483b-a601-279240ddf961.png)
+![Statistics](https://user-images.githubusercontent.com/103110817/232329847-4abcfca2-6ded-4df6-8c51-1e624c829c7a.png)
+
 
 #### Category Modal
 
-![Bildschirmfoto 2023-04-02 um 22 48 01](https://user-images.githubusercontent.com/103110817/229378322-b2bdeb05-74d5-4361-bf1f-17c28319a31b.png)
+![category](https://user-images.githubusercontent.com/103110817/232329855-10d3064f-15c7-4034-9744-f51b44192c16.png)
+
 
 #### Settings Modal
 
-![Bildschirmfoto 2023-04-02 um 22 55 09](https://user-images.githubusercontent.com/103110817/229378564-78b0483e-bf12-43db-9231-7073cb61144a.png)
+![settings](https://user-images.githubusercontent.com/103110817/232329863-ab2daccb-cf80-475c-98e8-5a627cce921c.png)
+
 
 
 
