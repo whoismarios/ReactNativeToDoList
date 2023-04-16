@@ -16,6 +16,12 @@ Then you have to change the directory:
 cd ToDoList/
 ```
 
+Create a .env file inside the root folder.
+Add your Unsplash API Key
+´´´bash
+UNSPLASH_ACCESS_KEY=your-key-here
+```
+
 And finally run the npm-script
 ```bash
 npm start
