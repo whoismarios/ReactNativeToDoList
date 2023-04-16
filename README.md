@@ -6,7 +6,7 @@ I created it using Expo and an iPhone 14 Pro Max Simulator.
 ---
 
 
-To clone the Project paste the following code to your terminal:
+To clone the Project paste the following code in your terminal:
 ```bash
 git clone https://github.com/whoismarios/ReactNativeToDoList.git
 ```
@@ -20,6 +20,11 @@ Create a .env file inside the root folder.
 Add your Unsplash API Key
 ```bash
 UNSPLASH_ACCESS_KEY=your-key-here
+```
+
+Install all dependencies
+```bash
+npm install
 ```
 
 And finally run the npm-script
